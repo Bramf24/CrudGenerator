@@ -21,7 +21,6 @@
         }
     ],
     "require": {
-        "laravel/lumen": "^10.0",
         "doctrine/dbal": "^3.6",
         "zircote/swagger-php": "^3.0"   
     }
