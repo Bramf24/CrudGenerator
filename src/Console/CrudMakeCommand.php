@@ -203,7 +203,9 @@ class CrudMakeCommand extends Command
      */
     private function routesBuild(){
         if(!File::exists(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php')){
-            file_put_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php','<?php');
+            $routesFile = fopen(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php','w');
+            fwrite($routesFile,'<?php');
+            fclose($routesFile);
         }
         $data[] = "\n";
         $data[] = '/**
