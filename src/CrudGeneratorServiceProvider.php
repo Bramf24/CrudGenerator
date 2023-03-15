@@ -1,6 +1,7 @@
 <?php namespace Bramf\CrudGenerator;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class CrudGeneratorServiceProvider extends ServiceProvider{
     /**
