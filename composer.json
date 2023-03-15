@@ -13,7 +13,5 @@
             "email": "vladmunj@gmail.com"
         }
     ],
-    "require": {},
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "require": {}
 }
