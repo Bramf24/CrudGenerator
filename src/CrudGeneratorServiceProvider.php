@@ -74,6 +74,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes/crud.php');
+        if(file_exists(__DIR__.'/routes/crud.php'))
+            $this->loadRoutesFrom(__DIR__.'/routes/crud.php');
     }
 }
