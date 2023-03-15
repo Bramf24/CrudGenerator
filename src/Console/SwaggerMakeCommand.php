@@ -1,12 +1,10 @@
-<?php
-
-namespace App\Console\Commands;
+<?php namespace Bramf\CrudGenerator\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-class GenerateSwagger extends Command
+class SwaggerMakeCommand extends Command
 {
     /**
      * The name and signature of the console command.

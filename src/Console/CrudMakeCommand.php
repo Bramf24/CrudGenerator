@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Console\Commands;
+<?php namespace Bramf\CrudGenerator\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
@@ -9,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class MakeControllerCrud extends Command
+class CrudMakeCommand extends Command
 {
     /**
      * Table column's exception list
