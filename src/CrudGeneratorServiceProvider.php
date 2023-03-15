@@ -66,4 +66,14 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
     {
         return array_values($this->commands);
     }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadRoutesFrom(__DIR__.'/routes/crud.php');
+    }
 }
