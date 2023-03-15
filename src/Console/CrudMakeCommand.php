@@ -212,7 +212,7 @@ class CrudMakeCommand extends Command
         $data[] = '/**
 * '.$this->params['controller_name'].' routes
 */
-$this->app->router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"],function() use($router){
+$this->app->router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"],function(){
     // CRUD
     $this->app->router->post("/","'.$this->params['controller_name'].'@create");
     $this->app->router->get("/","'.$this->params['controller_name'].'@all");
