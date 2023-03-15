@@ -2,7 +2,7 @@
     "name": "bramf/crud-generator",
     "description": "Crud generator for laravel/lumen with Open Api annotations",
     "type": "library",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Bramf\\CrudGenerator\\": "src/"
