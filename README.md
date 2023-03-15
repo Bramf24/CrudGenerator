@@ -80,7 +80,7 @@ php artisan migrate
 ```
 ## Commands
 ```bash
-php artisan make:crud command
+php artisan make:crud
 ```
 Command will ask you required parameters to make CRUD:
 
