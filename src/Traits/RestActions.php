@@ -1,4 +1,4 @@
-<?php namespace App\Traits;
+<?php namespace Bramf\CrudGenerator\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
