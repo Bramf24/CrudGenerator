@@ -1,6 +1,6 @@
 {
     "name": "bramf/crud-generator",
-    "type": "project",
+    "type": "library",
     "description": "Crud generator for laravel/lumen with Open Api annotations",
     "license": "MIT",
     "repositories": [
