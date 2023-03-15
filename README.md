@@ -66,3 +66,42 @@ $app->withFacades();
 
 $app->withEloquent();
 ```
+
+## Usage
+
+Before use command you need to create and run migration, that creates table for CRUD operations, for example:
+```bash
+php artisan make:migration create_tests_table
+```
+
+```bash
+php artisan migrate
+```
+Run php artisan make:crud command. Command will ask you required parameters to make CRUD:
+
+`Controller name:`\
+`>`\
+`CRUD url:`\
+`>`\
+`Model name:`\
+`>`\
+`Table name:`\
+`>`
+
+- Controller name: name of controller for CRUD operations.
+- CRUD url: route for CRUD operations. For example, value api/test will generate routes like this:
+```php
+/**
+* Controller routes
+*/
+$router->group(["prefix"=>"api/test"],function() use($router){
+    // CRUD
+    $router->post("/","Controller@create");
+    $router->get("/","Controller@all");
+    $router->get("/{id}","Controller@get");
+    $router->put("/{id}","Controller@update");
+    $router->delete("/{id}","Controller@delete");
+});
+```
+- Model name: name of model for CRUD operations.
+- Table name: name of table for CRUD operations.
