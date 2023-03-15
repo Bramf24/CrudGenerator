@@ -21,11 +21,9 @@ After installing package put variables to your .env file:
 Add this code to app\Console\Kernel.php in ```protected $commands``` section:
 
 ```php
-<?php
     protected $commands = [
         \App\Console\Commands\GenerateSwagger::class,
         \App\Console\Commands\MakeControllerCrud::class
     ];
-?>
 ```
 
