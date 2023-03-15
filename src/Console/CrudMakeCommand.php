@@ -64,7 +64,7 @@ class CrudMakeCommand extends Command
         $data = ['<?php namespace App\Http\Controllers;'];
         $data[] = '';
         $data[] = 'use Illuminate\Http\Request;';
-        $data[] = 'use Traits\RestActions;';
+        $data[] = 'use Bramf\CrudGenerator\Traits\RestActions;';
         $data[] = '';
         $data[] = 'class '.$this->params['controller_name'].' extends Controller{';
         $data[] = '';
