@@ -21,9 +21,9 @@
         }
     ],
     "require": {
-        "laravel/lumen": "^10.*",
+        "laravel/lumen": "^10.0",
         "doctrine/dbal": "^3.6",
-        "zircote/swagger-php": "^3.*"     
+        "zircote/swagger-php": "^3.0"     
     },
     "minimum-stability": "stable",
     "prefer-stable": true
