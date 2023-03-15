@@ -7,11 +7,11 @@ Lumen package for generate crud controller,model and routes
 Run command below to install package:
 
 ```bash
-composer require bramf/crud-generator:dev-master
+  composer require bramf/crud-generator:dev-master
 ```
 ## Environment Variables
 
-After installing package put variables to your .env file:
+After installing package change database connection settings and put SWAGGER_VERSION variable to your .env file:
 
 `DB_CONNECTION=YOUR_DB_TYPE[for example mysql,pgsql]`\
 `DB_HOST=DATABASE_HOST`\
