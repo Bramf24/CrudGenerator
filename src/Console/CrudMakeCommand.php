@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\DB;
 class CrudMakeCommand extends Command
 {
     /**
+     * @OA\Info(
+     *   description="OpenApi Documentation",
+     *   version="1.0",
+     *   title="OpenApi Documentation"
+     * )
+    */
+
+    /**
      * Table column's exception list
      */
     const MODEL_FIELD_EXCEPTIONS = [
