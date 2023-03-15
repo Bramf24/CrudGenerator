@@ -94,13 +94,13 @@ Run php artisan make:crud command. Command will ask you required parameters to m
 /**
 * Controller routes
 */
-$router->group(["prefix"=>"api/test"],function() use($router){
+$this->app->router->group(["prefix"=>"api/test"],function() use($router){
     // CRUD
-    $router->post("/","Controller@create");
-    $router->get("/","Controller@all");
-    $router->get("/{id}","Controller@get");
-    $router->put("/{id}","Controller@update");
-    $router->delete("/{id}","Controller@delete");
+    $this->app->router->post("/","Controller@create");
+    $this->app->router->get("/","Controller@all");
+    $this->app->router->get("/{id}","Controller@get");
+    $this->app->router->put("/{id}","Controller@update");
+    $this->app->router->delete("/{id}","Controller@delete");
 });
 ```
 - Model name: name of model for CRUD operations.
