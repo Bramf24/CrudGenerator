@@ -206,13 +206,13 @@ class CrudMakeCommand extends Command
         $data[] = '/**
 * '.$this->params['controller_name'].' routes
 */
-$router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"],function() use($router){
+$this->app->router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"],function() use($router){
     // CRUD
-    $router->post("/","'.$this->params['controller_name'].'@create");
-    $router->get("/","'.$this->params['controller_name'].'@all");
-    $router->get("/{id}","'.$this->params['controller_name'].'@get");
-    $router->put("/{id}","'.$this->params['controller_name'].'@update");
-    $router->delete("/{id}","'.$this->params['controller_name'].'@delete");
+    $this->app->router->post("/","'.$this->params['controller_name'].'@create");
+    $this->app->router->get("/","'.$this->params['controller_name'].'@all");
+    $this->app->router->get("/{id}","'.$this->params['controller_name'].'@get");
+    $this->app->router->put("/{id}","'.$this->params['controller_name'].'@update");
+    $this->app->router->delete("/{id}","'.$this->params['controller_name'].'@delete");
 });';
         file_put_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php',file_get_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php').join("\n",$data));
     }
