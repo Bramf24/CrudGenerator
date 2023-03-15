@@ -110,8 +110,16 @@ $router->group(["prefix"=>"api/test"],function() use($router){
 - Model name: name of model for CRUD operations.
 - Table name: name of table for CRUD operations.
 
+You can check new routes with command
+```bash
+php artisan route:list
+```
+
 This command also calls
 ```bash
 php artisan make:swagger
 ```
-command, that generate json file with open api annotations
+command, that generate json file with open api annotations. File location:
+```bash
+./public/swagger.json
+```
