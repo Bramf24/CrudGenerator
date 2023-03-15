@@ -39,9 +39,5 @@ class SwaggerMakeCommand extends Command
     {
         $process = Process::fromShellCommandline(base_path().'/vendor/bin/openapi app -o ./public/swagger.json');
         $process->run();
-        if(!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-        dump($process->getOutput());
     }
 }
