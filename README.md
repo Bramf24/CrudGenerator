@@ -77,7 +77,11 @@ php artisan make:migration create_tests_table
 ```bash
 php artisan migrate
 ```
-Run php artisan make:crud command. Command will ask you required parameters to make CRUD:
+## Commands
+```bash
+php artisan make:crud command
+```
+Command will ask you required parameters to make CRUD:
 
 `Controller name:`\
 `>`\
@@ -94,13 +98,13 @@ Run php artisan make:crud command. Command will ask you required parameters to m
 /**
 * Controller routes
 */
-$this->app->router->group(["prefix"=>"api/test"],function() use($router){
+$router->group(["prefix"=>"api/test"],function() use($router){
     // CRUD
-    $this->app->router->post("/","Controller@create");
-    $this->app->router->get("/","Controller@all");
-    $this->app->router->get("/{id}","Controller@get");
-    $this->app->router->put("/{id}","Controller@update");
-    $this->app->router->delete("/{id}","Controller@delete");
+    $router->post("/","Controller@create");
+    $router->get("/","Controller@all");
+    $router->get("/{id}","Controller@get");
+    $router->put("/{id}","Controller@update");
+    $router->delete("/{id}","Controller@delete");
 });
 ```
 - Model name: name of model for CRUD operations.
