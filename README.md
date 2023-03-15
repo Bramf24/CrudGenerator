@@ -20,8 +20,7 @@ After installing package change database connection settings and put SWAGGER_VER
 `DB_USERNAME=DATABASE_USERNAME`\
 `DB_PASSWORD=DATABASE_PASSWORD`
 
-`SWAGGER_VERSION=3.0`\
-`AUTHOR=YOUR_NAME`
+`SWAGGER_VERSION=3.0`
 
 ## Configuration
 
@@ -110,3 +109,9 @@ $router->group(["prefix"=>"api/test"],function() use($router){
 ```
 - Model name: name of model for CRUD operations.
 - Table name: name of table for CRUD operations.
+
+This command also calls
+```bash
+php artisan make:swagger
+```
+command, that generate json file with open api annotations
