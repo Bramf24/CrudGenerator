@@ -210,9 +210,9 @@ class CrudMakeCommand extends Command
      * Create routes for CRUD
      */
     private function routesBuild(){
-        if(!File::exists(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php')){
-            mkdir(base_path().'/vendor/bramf/crud-generator/src/routes',0755,true);
-            file_put_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php','<?php');
+        $routesPath = base_path().'/routes/crud.php';
+        if(!File::exists($routesPath)){
+            file_put_contents($routesPath,'<?php');
         }
         $data[] = "\n";
         $data[] = '/**
@@ -226,7 +226,7 @@ $this->app->router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"]
     $this->app->router->put("/{id}","'.$this->params['controller_name'].'@update");
     $this->app->router->delete("/{id}","'.$this->params['controller_name'].'@delete");
 });';
-        file_put_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php',file_get_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php').join("\n",$data));
+        file_put_contents($routesPath,file_get_contents($routesPath).join("\n",$data));
     }
 
     /**

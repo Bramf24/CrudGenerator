@@ -74,11 +74,11 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
      */
     public function boot()
     {
-        if(file_exists(__DIR__.'/routes/crud.php')){
+        if(file_exists(base_path().'/routes/crud.php')){
             Route::group([
                 'namespace' => 'App\Http\Controllers'
             ], function($router){
-                require __DIR__.'/routes/crud.php';
+                require base_path().'/routes/crud.php';
             });
         }
     }
