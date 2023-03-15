@@ -202,6 +202,9 @@ class CrudMakeCommand extends Command
      * Create routes for CRUD
      */
     private function routesBuild(){
+        if(!File::exists(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php')){
+            file_put_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php','<?php');
+        }
         $data[] = "\n";
         $data[] = '/**
 * '.$this->params['controller_name'].' routes
