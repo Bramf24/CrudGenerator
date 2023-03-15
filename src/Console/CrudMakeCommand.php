@@ -74,6 +74,14 @@ class CrudMakeCommand extends Command
         $data[] = 'use Illuminate\Http\Request;';
         $data[] = 'use Bramf\CrudGenerator\Traits\RestActions;';
         $data[] = '';
+        $data[] = '/**
+    * Class '.$this->params['controller_name'].'
+    * 
+    * @package App\Http\Controllers
+    * 
+    * @author '.$this->params['author'].'
+    * 
+    */';
         $data[] = 'class '.$this->params['controller_name'].' extends Controller{';
         $data[] = '';
         $data[] = "const MODEL = 'App\Models\\".$this->params['model_name']."';";
@@ -364,6 +372,18 @@ private $'.$field['name'].';';
         file_put_contents(base_path().'/app/Models/'.$this->params['model_name'].'.php',join("\n",$data));
     }
 
+    private function infoFileBuild(){
+        if(!File::exists(base_path().'/app/swagger-info.php')){
+            file_put_contents(base_path().'/app/swagger-info.php','/**
+                * @OA\Info(
+                *   description="OpenApi Documentation",
+                *   version="1.0",
+                *   title="OpenApi Documentation"
+                * )
+            */');
+        }
+    }
+
     /**
      * Transform keys to string array
      */
@@ -386,7 +406,9 @@ private $'.$field['name'].';';
         $this->params['crud_url'] = $this->ask('CRUD url');
         $this->params['model_name'] = $this->ask('Model name');
         $this->params['table_name'] = $this->ask('Table name');
+        $this->params['author'] = env('AUTHOR');
         if(!$this->validate()) return false;
+        $this->infoFileBuild();
         $this->controllerBuild();
         $this->routesBuild();
         $this->modelBuild();
