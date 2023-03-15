@@ -1,7 +1,7 @@
 
 # Crud Generator
 
-Package for generate crud controller,model and routes
+Lumen package for generate crud controller,model and routes
 ## Installation
 
 Run command below to install package:
@@ -24,12 +24,19 @@ After installing package put variables to your .env file:
 
 ## Configuration
 
-Add this code to app\Console\Kernel.php in ```protected $commands``` section:
+Add CrudGeneratorProvider to providers section in bootstrap/app.php:
 
 ```php
-    protected $commands = [
-        \App\Console\Commands\GenerateSwagger::class,
-        \App\Console\Commands\MakeControllerCrud::class
-    ];
+    /*
+    |--------------------------------------------------------------------------
+    | Register Service Providers
+    |--------------------------------------------------------------------------
+    |
+    | Here we will register all of the application's service providers which
+    | are used to bind services into the container. Service providers are
+    | totally optional, so you are not required to uncomment this line.
+    |
+    */
+    $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+    $app->register(Bramf\CrudGenerator\CrudGeneratorServiceProvider::class);
 ```
-
