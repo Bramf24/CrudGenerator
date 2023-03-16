@@ -77,6 +77,7 @@ class Model{
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
+        $template = str_replace('#RULES',$this->generateRules(),$template);
         file_put_contents(base_path().'/app/Models/'.$this->buildParams['ParamModel'].'.php',$template);
         $this->output->writeln('<info>Model '.$this->buildParams['ParamModel'].' created successfully</info>');
     }
