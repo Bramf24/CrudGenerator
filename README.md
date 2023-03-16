@@ -14,7 +14,7 @@ php artisan migrate
 ```
 ## Environment Variables
 
-After installing package change database connection settings and put SWAGGER_VERSION variable to your .env file:
+After installing package change database connection settings and put SWAGGER_VERSION,PACKAGE_AUTHOR variable to your .env file:
 
 `DB_CONNECTION=YOUR_DB_TYPE[for example mysql,pgsql]`\
 `DB_HOST=DATABASE_HOST`\
@@ -23,7 +23,8 @@ After installing package change database connection settings and put SWAGGER_VER
 `DB_USERNAME=DATABASE_USERNAME`\
 `DB_PASSWORD=DATABASE_PASSWORD`
 
-`SWAGGER_VERSION=3.0`
+`SWAGGER_VERSION=3.0`\
+`PACKAGE_AUTHOR=AUTHOR_NAME`
 
 ## Configuration
 
