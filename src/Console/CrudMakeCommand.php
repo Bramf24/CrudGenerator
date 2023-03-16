@@ -279,6 +279,7 @@ private $'.$field['name'].';';
         $this->prepareData();
         (new Controller($this->params))->build();
         (new Router($this->params))->build();
+        $this->call('route:list');
         // $this->routesBuild();
         // $this->modelBuild();
         // $this->call('make:swagger');
