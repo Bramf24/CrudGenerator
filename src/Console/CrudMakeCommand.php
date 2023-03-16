@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Bramf\CrudGenerator\Exceptions\CommandException;
 use Bramf\CrudGenerator\Builders\Controller;
+use Bramf\CrudGenerator\Builders\Router;
 
 class CrudMakeCommand extends Command
 {
@@ -277,6 +278,7 @@ private $'.$field['name'].';';
         $this->validate();
         $this->prepareData();
         (new Controller($this->params))->build();
+        (new Router($this->params))->build();
         // $this->routesBuild();
         // $this->modelBuild();
         // $this->call('make:swagger');

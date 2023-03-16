@@ -24,7 +24,6 @@
         "doctrine/dbal": "^3.6",
         "zircote/swagger-php": "^4.7",
         "flipbox/lumen-generator": "^9.2.0",
-        "awobaz/compoships": "^2.2.3",
-        "composer/composer": "^2.5.4"
+        "awobaz/compoships": "^2.2.3"
     }
 }
