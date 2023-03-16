@@ -1,13 +1,11 @@
 <?php namespace Bramf\CrudGenerator\Builders;
 
 use Illuminate\Support\Str;
-use Illuminate\Console\Command;
 
-class Controller extends Command{
+class Controller{
     public function __construct(
         private array $params
     ){
-        parent::__construct();
         $this->buildParams['ParamController'] = $this->params['controller_name'];
         $this->buildParams['ParamModelLower'] = Str::lower($this->params['model_name']);
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
@@ -24,6 +22,6 @@ class Controller extends Command{
             $template = str_replace($param,$value,$template);
         }
         file_put_contents(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php',$template);
-        $this->info('Controller '.$this->buildParams['ParamController'].' created successfully');
+        $this->command->info('Controller '.$this->buildParams['ParamController'].' created successfully');
     }
 }
