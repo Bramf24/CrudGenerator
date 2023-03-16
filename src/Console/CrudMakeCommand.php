@@ -89,6 +89,6 @@ class CrudMakeCommand extends Command
         (new Router($this->params))->build();
         (new Model($this->params))->build();
         $this->call('make:swagger');
-        $this->info('OpenApi annotations created successfully!');
+        $this->info('OpenApi annotations created successfully');
     }
 }
