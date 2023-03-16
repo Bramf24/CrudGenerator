@@ -80,6 +80,7 @@ class Model{
         }
         $template = str_replace('#RULES',$this->generateRules(),$template);
         $template = str_replace('#PROPERTIES',$this->generateProperties(),$template);
+        $template = str_replace('#FILLABLE',$this->fillable(array_keys($$this->fields)),$template);
         file_put_contents(base_path().'/app/Models/'.$this->buildParams['ParamModel'].'.php',$template);
         $this->output->writeln('<info>Model '.$this->buildParams['ParamModel'].' created successfully</info>');
     }
@@ -149,7 +150,7 @@ class Model{
     private function fillable($keys){
         $result = [];
         foreach($keys as $key){
-            $result[] = '"'.$key.'"';
+            $result[] = '       "'.$key.'"';
         }
         return join(", ",$result);
     }

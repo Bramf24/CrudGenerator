@@ -28,4 +28,13 @@ class ParamModel extends Model{
     ];
 
 #PROPERTIES
+
+    /**
+        * The attributes that are mass assignable.
+        *
+        * @var string[]
+    */
+    protected $fillable = [
+#FILLABLE
+    ];
 }
