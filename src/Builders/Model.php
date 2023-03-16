@@ -150,9 +150,9 @@ class Model{
     private function fillable($keys){
         $result = [];
         foreach($keys as $key){
-            $result[] = '       "'.$key.'"';
+            $result[] = '"'.$key.'"';
         }
-        return join(", ",$result);
+        return '        '.join(",",$result);
     }
 
     private function generateProperties(){
