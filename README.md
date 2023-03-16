@@ -23,7 +23,7 @@ After installing package change database connection settings and put SWAGGER_VER
 `DB_USERNAME=DATABASE_USERNAME`\
 `DB_PASSWORD=DATABASE_PASSWORD`
 
-`SWAGGER_VERSION=3.0`
+`SWAGGER_VERSION=3.0`\
 `PACKAGE_AUTHOR=AUTHOR_NAME`
 
 ## Configuration
