@@ -50,8 +50,7 @@ class CrudMakeCommand extends Command
             'controller_name' => ['required'],
             'crud_url' => ['required'],
             'model_name' => ['required'],
-            'table_name' => ['required'],
-            'author' => ['required']
+            'table_name' => ['required']
         ]);
         if($validator->fails()){
             foreach($validator->errors()->all() as $error){
@@ -59,6 +58,7 @@ class CrudMakeCommand extends Command
             }
             throw new CommandException('Validation failed');
         }
+        if(empty($this->params['author'])) throw new CommandException('Add PACKAGE_AUTHOR variable to your .env file');
         if(File::exists(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php')){
             throw new CommandException('Controller with name '.$this->params['controller_name'].' already exists!');
         }
