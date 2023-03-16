@@ -13,7 +13,7 @@ class Router{
      * Build routes file
      */
     public function build(){
-        $routes = app()->router->getRoutes();
-        dump($routes);
+        // $routes = app()->router->getRoutes();
+        // dump($routes);
     }
 }

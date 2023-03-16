@@ -1,8 +1,9 @@
 <?php namespace Bramf\CrudGenerator\Builders;
 
 use Illuminate\Support\Str;
+use Illuminate\Console\Command;
 
-class Controller{
+class Controller extends Command{
     public function __construct(
         private array $params
     ){
@@ -22,5 +23,6 @@ class Controller{
             $template = str_replace($param,$value,$template);
         }
         file_put_contents(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php',$template);
+        $this->info('Controller '.$this->buildParams['ParamController'].' created successfully');
     }
 }

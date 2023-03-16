@@ -282,6 +282,6 @@ private $'.$field['name'].';';
         // $this->routesBuild();
         // $this->modelBuild();
         // $this->call('make:swagger');
-        $this->info('Controller, model and routes successfully created!');
+        // $this->info('Controller, model and routes successfully created!');
     }
 }
