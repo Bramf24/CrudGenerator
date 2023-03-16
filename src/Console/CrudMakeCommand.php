@@ -10,14 +10,6 @@ use Illuminate\Support\Facades\DB;
 class CrudMakeCommand extends Command
 {
     /**
-     * @OA\Info(
-     *   description="OpenApi Documentation",
-     *   version="1.0",
-     *   title="OpenApi Documentation"
-     * )
-    */
-
-    /**
      * Table column's exception list
      */
     const MODEL_FIELD_EXCEPTIONS = [
@@ -191,11 +183,11 @@ class CrudMakeCommand extends Command
             foreach($validator->errors()->all() as $error){
                 $this->error($error);
             }
-            return false;
+            return;
         }
         if(File::exists(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php')){
             $this->error('Controller with name '.$this->params['controller_name'].' already exists!');
-            return false;
+            return;
         }
         $this->params['controller_name'] = Str::ucfirst($this->params['controller_name']);
         $this->params['controller_name'] = str_replace('controller','Controller',$this->params['controller_name']);
@@ -203,7 +195,6 @@ class CrudMakeCommand extends Command
             $this->params['controller_name'] .= 'Controller';
         $this->params['crud_url'] = '/'.trim($this->params['crud_url'],'/');
         $this->params['model_name'] = Str::ucfirst($this->params['model_name']);
-        return true;
     }
 
     /**
@@ -376,17 +367,24 @@ private $'.$field['name'].';';
     }
 
     /**
+     * Asking user for set parameters
+     */
+    private function input(){
+        $this->params['controller_name'] = $this->ask('Controller name');
+        $this->params['crud_url'] = $this->ask('CRUD url');
+        $this->params['model_name'] = $this->ask('Model name');
+        $this->params['table_name'] = $this->ask('Table name');
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $this->params['controller_name'] = $this->ask('Controller name');
-        $this->params['crud_url'] = $this->ask('CRUD url');
-        $this->params['model_name'] = $this->ask('Model name');
-        $this->params['table_name'] = $this->ask('Table name');
-        if(!$this->validate()) return false;
+        $this->input();
+        $this->validate();
         $this->controllerBuild();
         $this->routesBuild();
         $this->modelBuild();
