@@ -138,6 +138,6 @@ class Model{
         foreach($this->fields as $field){
             $output .= '"'.$field['name'].'" => "'.implode("|",$field['rules']).'",'."\n";
         }
-        return $output;
+        return rtrim($output,'"\n"');
     }
 }
