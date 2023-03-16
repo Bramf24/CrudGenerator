@@ -75,12 +75,10 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
      */
     public function boot()
     {
-        if(file_exists(base_path().'/routes/crud.php')){
-            Route::group([
-                'namespace' => 'App\Http\Controllers'
-            ], function($router){
-                require base_path().'/routes/crud.php';
-            });
-        }
+        Route::group([
+            'namespace' => 'App\Http\Controllers'
+        ], function($router){
+            require base_path().'/vendor/bramf/crud-generator/src/routes/crud.php';
+        });
     }
 }
