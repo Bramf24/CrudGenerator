@@ -340,6 +340,13 @@ private $'.$field['name'].';';
     }
 
     /**
+     * Transform input data to required format
+     */
+    private function prepareData(){
+        $this->params['crud_url'] = '/'.trim($this->params['crud_url'],'/');
+    }
+
+    /**
      * Validate command options
      */
     private function validate(){
@@ -351,20 +358,12 @@ private $'.$field['name'].';';
         ]);
         if($validator->fails()){
             foreach($validator->errors()->all() as $error){
-                $this->error($error);
+                throw new CommandException('Validation failed');
             }
-            throw new CommandException('Validation failed');
         }
         if(File::exists(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php')){
-            $this->error('Controller with name '.$this->params['controller_name'].' already exists!');
-            return;
+            throw new CommandException('Controller with name '.$this->params['controller_name'].' already exists!');
         }
-        $this->params['controller_name'] = Str::ucfirst($this->params['controller_name']);
-        $this->params['controller_name'] = str_replace('controller','Controller',$this->params['controller_name']);
-        if(!strpos($this->params['controller_name'],'Controller'))
-            $this->params['controller_name'] .= 'Controller';
-        $this->params['crud_url'] = '/'.trim($this->params['crud_url'],'/');
-        $this->params['model_name'] = Str::ucfirst($this->params['model_name']);
     }
 
     /**
@@ -386,6 +385,7 @@ private $'.$field['name'].';';
     {
         $this->input();
         $this->validate();
+        $this->prepareData();
         $this->controllerBuild();
         $this->routesBuild();
         $this->modelBuild();
