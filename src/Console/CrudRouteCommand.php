@@ -30,6 +30,18 @@ class CrudRouteCommand extends Command{
     }
 
     /**
+     * Transform 'crud_route_groups' table data to array
+     */
+    private function getGroupsTable(){
+        $groups = DB::table('crud_route_groups')->get(['id','group_name','controller_name']);
+        $table = [];
+        foreach($groups as $group){
+            $table[] = [$group->id,$group->group_name,$group->controller_name];
+        }
+        return $table;
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -37,10 +49,9 @@ class CrudRouteCommand extends Command{
     public function handle()
     {
         $this->info('Type id of group you want to remove or type 0 to delete all groups');
-        $groups = DB::table('crud_route_groups')->get(['id','group_name','controller_name']);
         $this->table(
             ['id','group','controller'],
-            [$groups->toArray()]
+            $this->getGroupsTable()
         );
         $this->params['group_id'] = $this->ask('Id group');
     }
