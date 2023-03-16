@@ -36,7 +36,7 @@ class CrudRouteCommand extends Command{
      */
     private function validate(){
         $validator = Validator::make($this->params,[
-            'id_group' => ['required','numeric']
+            'id_group' => ['required','integer']
         ]);
         if($validator->fails()){
             foreach($validator->errors()->all() as $error){
@@ -83,7 +83,7 @@ class CrudRouteCommand extends Command{
             ['id','group','controller'],
             $this->getGroupsTable()
         );
-        $this->params['group_id'] = $this->ask('Id group');
+        $this->params['id_group'] = $this->ask('Id group');
         $this->validate();
         $this->removeGroup();
     }
