@@ -7,9 +7,9 @@ class Controller{
         private array $params
     ){
         $this->buildParams['ParamController'] = $this->params['controller_name'];
-        $this->buildParams['ParamModel'] = $this->params['model_name'];
         $this->buildParams['ParamModelLower'] = Str::lower($this->params['model_name']);
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
+        $this->buildParams['ParamModel'] = $this->params['model_name'];
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
     }
 
