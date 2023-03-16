@@ -2,6 +2,8 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Bramf\CrudGenerator\Exceptions\CommandException;
+use Illuminate\Support\Facades\Validator;
 
 class CrudRouteCommand extends Command{
     /**
@@ -30,6 +32,34 @@ class CrudRouteCommand extends Command{
     }
 
     /**
+     * Validate command options
+     */
+    private function validate(){
+        $validator = Validator::make($this->params,[
+            'id_group' => ['required','numeric']
+        ]);
+        if($validator->fails()){
+            foreach($validator->errors()->all() as $error){
+                $this->error($error);
+            }
+            throw new CommandException('Validation failed');
+        }
+    }
+
+    /**
+     * Remove route group from 'crud_route_groups' table
+     */
+    private function removeGroup(){
+        if($this->params['id_group'] == 0){
+            DB::table('crud_route_groups')->truncate();
+            $this->info('All groups removed successfully');
+            return false;
+        }
+        DB::table('crud_route_groups')->where('id',$this->params['id_group'])->delete();
+        $this->info('Group with id '.$this->params['id_group'].' removed successfully');
+    }
+
+    /**
      * Transform 'crud_route_groups' table data to array
      */
     private function getGroupsTable(){
@@ -54,5 +84,7 @@ class CrudRouteCommand extends Command{
             $this->getGroupsTable()
         );
         $this->params['group_id'] = $this->ask('Id group');
+        $this->validate();
+        $this->removeGroup();
     }
 }
