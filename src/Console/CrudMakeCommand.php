@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Bramf\CrudGenerator\Exceptions\CommandException;
+use Bramf\CrudGenerator\Builders\Controller;
 
 class CrudMakeCommand extends Command
 {
@@ -56,118 +57,6 @@ class CrudMakeCommand extends Command
     {
         parent::__construct();
         $this->params = [];
-    }
-
-    /**
-     * Create class and write it to app\Http\Controllers folder
-     */
-    private function controllerBuild(){
-        $data = ['<?php namespace App\Http\Controllers;'];
-        $data[] = '';
-        $data[] = 'use Illuminate\Http\Request;';
-        $data[] = 'use Bramf\CrudGenerator\Traits\RestActions;';
-        $data[] = '';
-        $data[] = 'class '.$this->params['controller_name'].' extends Controller{';
-        $data[] = '';
-        $data[] = "const MODEL = 'App\Models\\".$this->params['model_name']."';";
-        $data[] = '';
-        $data[] = 'use RestActions;';
-        $data[] = '';
-        $data[] = '/**
-    * @OA\Get(
-    *   path="'.$this->params['crud_url'].'",
-    *   tags={"'.Str::snake($this->params['model_name'],'-').'"},
-    *   description="Get all '.Str::snake($this->params['model_name'],' ').'s",
-    *   operationId="'.Str::lower($this->params['model_name']).'all",
-    *   @OA\Response(
-    *     response=200, 
-    *     description="'.Str::snake($this->params['model_name'],' ').' objects",
-    *     @OA\JsonContent(
-    *       type="array",
-    *       @OA\Items(ref="#/components/schemas/'.$this->params['model_name'].'")
-    *     )
-    *   ),
-    *   @OA\Response(response=401, description="Unauthorized")
-    * )
-*/';
-        $data[] = 'private $all;';
-        $data[] = '';
-        $data[] = '/**
-    * @OA\Get(
-    *   path="'.$this->params['crud_url'].'/{'.Str::lower($this->params['model_name']).'Id}",
-    *   tags={"'.Str::snake($this->params['model_name'],'-').'"},
-    *   description="Find '.Str::snake($this->params['model_name'],' ').' by id",
-    *   operationId="'.Str::lower($this->params['model_name']).'get",
-    *   @OA\Response(
-    *     response=200, 
-    *     description="'.Str::snake($this->params['model_name'],' ').' object",
-    *     @OA\JsonContent(
-    *       type="array",
-    *       @OA\Items(ref="#/components/schemas/'.$this->params['model_name'].'")
-    *     )
-    *   ),
-    *   @OA\Response(response=401, description="Unauthorized")
-    * )
-*/';
-        $data[] = 'private $get;';
-        $data[] = '';
-        $data[] = '/**
-    * @OA\Post(
-    *   path="'.$this->params['crud_url'].'",
-    *   tags={"'.Str::snake($this->params['model_name'],'-').'"},
-    *   description="Create new '.Str::snake($this->params['model_name'],' ').'",
-    *   operationId="'.Str::lower($this->params['model_name']).'create",
-    *   @OA\Response(
-    *     response=200, 
-    *     description="'.Str::snake($this->params['model_name'],' ').' object",
-    *     @OA\JsonContent(
-    *       type="array",
-    *       @OA\Items(ref="#/components/schemas/'.$this->params['model_name'].'")
-    *     )
-    *   ),
-    *   @OA\Response(response=401, description="Unauthorized"),
-    *   @OA\Response(response=400, description="Validation errors")
-    * )
-*/';
-        $data[] = 'private $create;';
-        $data[] = '';
-        $data[] = '/**
-    * @OA\Put(
-    *   path="'.$this->params['crud_url'].'/{'.Str::lower($this->params['model_name']).'Id}",
-    *   tags={"'.Str::snake($this->params['model_name'],'-').'"},
-    *   description="Update '.Str::snake($this->params['model_name'],' ').' with given Id",
-    *   operationId="'.Str::lower($this->params['model_name']).'update",
-    *   @OA\Response(
-    *     response=200, 
-    *     description="'.Str::snake($this->params['model_name'],' ').' object",
-    *     @OA\JsonContent(
-    *       type="array",
-    *       @OA\Items(ref="#/components/schemas/'.$this->params['model_name'].'")
-    *     )
-    *   ),
-    *   @OA\Response(response=401, description="Unauthorized"),
-    *   @OA\Response(response=400, description="Validation errors")
-    * )
-*/';
-        $data[] = 'private $update;';
-        $data[] = '';
-        $data[] = '/**
-    * @OA\Delete(
-    *   path="'.$this->params['crud_url'].'/{'.Str::lower($this->params['model_name']).'Id}",
-    *   tags={"'.Str::snake($this->params['model_name'],'-').'"},
-    *   description="Delete '.Str::snake($this->params['model_name'],' ').' with given Id",
-    *   operationId="'.Str::lower($this->params['model_name']).'delete",
-    *   @OA\Response(
-    *     response=200, 
-    *     description="'.$this->params['model_name'].' model with given id removed"
-    *   ),
-    *   @OA\Response(response=401, description="Unauthorized")
-    * )
-*/';
-        $data[] = 'private $delete;';
-        $data[] = '';
-        $data[] = '}';
-        file_put_contents(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php',join("\n",$data));
     }
 
     /**
@@ -387,10 +276,10 @@ private $'.$field['name'].';';
         $this->input();
         $this->validate();
         $this->prepareData();
-        $this->controllerBuild();
-        $this->routesBuild();
-        $this->modelBuild();
-        $this->call('make:swagger');
+        (new Controller($this->params))->build();
+        // $this->routesBuild();
+        // $this->modelBuild();
+        // $this->call('make:swagger');
         $this->info('Controller, model and routes successfully created!');
     }
 }
