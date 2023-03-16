@@ -80,5 +80,6 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
         ], function($router){
             require base_path().'/vendor/bramf/crud-generator/src/routes/crud.php';
         });
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 }
