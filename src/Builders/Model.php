@@ -64,6 +64,7 @@ class Model{
         $this->fields = [];
         $this->buildParams['ParamTable'] = $this->params['table_name'];
         $this->buildParams['ParamModel'] = $this->params['model_name'];
+        $this->output = new ConsoleOutput();
     }
 
     /**

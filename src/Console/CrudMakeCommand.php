@@ -83,8 +83,8 @@ class CrudMakeCommand extends Command
         $this->input();
         $this->validate();
         $this->prepareData();
-        (new Controller($this->params))->build();
-        (new Router($this->params))->build();
+        // (new Controller($this->params))->build();
+        // (new Router($this->params))->build();
         (new Model($this->params))->build();
         // $this->call('make:swagger');
         // $this->info('Controller, model and routes successfully created!');
