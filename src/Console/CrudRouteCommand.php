@@ -40,7 +40,7 @@ class CrudRouteCommand extends Command{
         $groups = DB::table('crud_route_groups')->get(['id','group_name','controller_name']);
         $this->table(
             ['id','group','controller'],
-            $groups->toArray()
+            [$groups->toArray()]
         );
         $this->params['group_id'] = $this->ask('Id group');
     }
