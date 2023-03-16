@@ -24,6 +24,6 @@ class Controller{
             $template = str_replace($param,$value,$template);
         }
         file_put_contents(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php',$template);
-        $this->output->writeIn('<info>Controller '.$this->buildParams['ParamController'].' created successfully</info>');
+        $this->output->writeln('<info>Controller '.$this->buildParams['ParamController'].' created successfully</info>');
     }
 }
