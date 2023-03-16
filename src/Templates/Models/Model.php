@@ -24,8 +24,8 @@ class ParamModel extends Model{
     * Validation rules
     */
     public static $rules = [
-        #RULES
+#RULES
     ];
 
-    #PROPERTIES
+#PROPERTIES
 }

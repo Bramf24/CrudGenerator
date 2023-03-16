@@ -138,7 +138,7 @@ class Model{
     private function generateRules(){
         $output = [];
         foreach($this->fields as $field){
-            $output[] = '"'.$field['name'].'" => "'.implode("|",$field['rules']).'",';
+            $output[] = '       "'.$field['name'].'" => "'.implode("|",$field['rules']).'",';
         }
         return join("\n",$output);
     }
