@@ -170,34 +170,6 @@ class CrudMakeCommand extends Command
     }
 
     /**
-     * Validate command options
-     */
-    private function validate(){
-        $validator = Validator::make($this->params,[
-            'controller_name' => ['required'],
-            'crud_url' => ['required'],
-            'model_name' => ['required'],
-            'table_name' => ['required']
-        ]);
-        if($validator->fails()){
-            foreach($validator->errors()->all() as $error){
-                $this->error($error);
-            }
-            return;
-        }
-        if(File::exists(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php')){
-            $this->error('Controller with name '.$this->params['controller_name'].' already exists!');
-            return;
-        }
-        $this->params['controller_name'] = Str::ucfirst($this->params['controller_name']);
-        $this->params['controller_name'] = str_replace('controller','Controller',$this->params['controller_name']);
-        if(!strpos($this->params['controller_name'],'Controller'))
-            $this->params['controller_name'] .= 'Controller';
-        $this->params['crud_url'] = '/'.trim($this->params['crud_url'],'/');
-        $this->params['model_name'] = Str::ucfirst($this->params['model_name']);
-    }
-
-    /**
      * Create routes for CRUD
      */
     private function routesBuild(){
@@ -364,6 +336,34 @@ private $'.$field['name'].';';
             $result[] = '"'.$key.'"';
         }
         return join(", ",$result);
+    }
+
+    /**
+     * Validate command options
+     */
+    private function validate(){
+        $validator = Validator::make($this->params,[
+            'controller_name' => ['required'],
+            'crud_url' => ['required'],
+            'model_name' => ['required'],
+            'table_name' => ['required']
+        ]);
+        if($validator->fails()){
+            foreach($validator->errors()->all() as $error){
+                $this->error($error);
+            }
+            throw new Exceptions\CommandException('Validation failed');
+        }
+        if(File::exists(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php')){
+            $this->error('Controller with name '.$this->params['controller_name'].' already exists!');
+            return;
+        }
+        $this->params['controller_name'] = Str::ucfirst($this->params['controller_name']);
+        $this->params['controller_name'] = str_replace('controller','Controller',$this->params['controller_name']);
+        if(!strpos($this->params['controller_name'],'Controller'))
+            $this->params['controller_name'] .= 'Controller';
+        $this->params['crud_url'] = '/'.trim($this->params['crud_url'],'/');
+        $this->params['model_name'] = Str::ucfirst($this->params['model_name']);
     }
 
     /**
