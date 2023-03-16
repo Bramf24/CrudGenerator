@@ -134,10 +134,10 @@ class Model{
      * generate 'protected static $rules' array for model
      */
     private function generateRules(){
-        $output = '';
+        $output = [];
         foreach($this->fields as $field){
-            $output .= '"'.$field['name'].'" => "'.implode("|",$field['rules']).'",'."\n";
+            $output[] = '"'.$field['name'].'" => "'.implode("|",$field['rules']).'",';
         }
-        return rtrim($output,'"\n"');
+        return join("\n",$output);
     }
 }
