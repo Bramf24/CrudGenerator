@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Bramf\CrudGenerator\Exceptions\CommandException;
 
 class CrudMakeCommand extends Command
 {
