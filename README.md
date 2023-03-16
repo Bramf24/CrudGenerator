@@ -4,10 +4,13 @@
 Lumen package for generate crud controller,model and routes
 ## Installation
 
-Run command below to install package:
+Run commands below:
 
 ```bash
 composer require bramf/crud-generator:dev-master
+```
+```bash
+php artisan migrate
 ```
 ## Environment Variables
 
