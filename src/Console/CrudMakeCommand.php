@@ -218,13 +218,13 @@ class CrudMakeCommand extends Command
         $data[] = '/**
 * '.$this->params['controller_name'].' routes
 */
-$this->app->router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"],function(){
+$router->group(["prefix"=>"'.ltrim($this->params['crud_url'],'/').'"],function() use($router){
     // CRUD
-    $this->app->router->post("/","'.$this->params['controller_name'].'@create");
-    $this->app->router->get("/","'.$this->params['controller_name'].'@all");
-    $this->app->router->get("/{id}","'.$this->params['controller_name'].'@get");
-    $this->app->router->put("/{id}","'.$this->params['controller_name'].'@update");
-    $this->app->router->delete("/{id}","'.$this->params['controller_name'].'@delete");
+    $router->post("/","'.$this->params['controller_name'].'@create");
+    $router->get("/","'.$this->params['controller_name'].'@all");
+    $router->get("/{id}","'.$this->params['controller_name'].'@get");
+    $router->put("/{id}","'.$this->params['controller_name'].'@update");
+    $router->delete("/{id}","'.$this->params['controller_name'].'@delete");
 });';
         file_put_contents($routesPath,file_get_contents($routesPath).join("\n",$data));
     }
