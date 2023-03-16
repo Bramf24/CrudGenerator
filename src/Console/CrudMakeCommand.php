@@ -3,6 +3,7 @@
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use Bramf\CrudGenerator\Exceptions\CommandException;
+use Illuminate\Support\Facades\File;
 use Bramf\CrudGenerator\Builders\Controller;
 use Bramf\CrudGenerator\Builders\Router;
 use Bramf\CrudGenerator\Builders\Model;
