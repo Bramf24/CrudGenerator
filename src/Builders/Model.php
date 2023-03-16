@@ -79,7 +79,7 @@ class Model{
             $template = str_replace($param,$value,$template);
         }
         $template = str_replace('#RULES',$this->generateRules(),$template);
-        $this->generateProperties();
+        $template = str_replace('#PROPERTIES',$this->generateProperties(),$template);
         file_put_contents(base_path().'/app/Models/'.$this->buildParams['ParamModel'].'.php',$template);
         $this->output->writeln('<info>Model '.$this->buildParams['ParamModel'].' created successfully</info>');
     }
