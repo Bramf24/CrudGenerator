@@ -353,7 +353,7 @@ private $'.$field['name'].';';
             foreach($validator->errors()->all() as $error){
                 $this->error($error);
             }
-            throw new Exceptions\CommandException('Validation failed');
+            throw new CommandException('Validation failed');
         }
         if(File::exists(base_path().'/app/Http/Controllers/'.$this->params['controller_name'].'.php')){
             $this->error('Controller with name '.$this->params['controller_name'].' already exists!');
