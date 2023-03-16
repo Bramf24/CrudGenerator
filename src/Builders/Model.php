@@ -156,8 +156,8 @@ class Model{
 
     private function generateProperties(){
         $output = [];
-        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Models/ModelProperty.template');
         foreach($this->fields as $field){
+            $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Models/ModelProperty.template');
             $description = Str::snake($field['name'],' ');
             if($field['foreign']){
                 $description = $field['name'].' is related to '.$field['foreign_table'].'.'.$field['foreign_table_column'];
