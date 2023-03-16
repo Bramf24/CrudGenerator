@@ -11,15 +11,13 @@ class Controller{
         $this->buildParams['ParamModelLower'] = Str::lower($this->params['model_name']);
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
-        $reflection = new \ReflectionClass(\Composer\Autoload\ClassLoader::class);
-        $this->rootPath = dirname($reflection->getFileName());
     }
 
     /**
      * Build controller file
      */
     public function build(){
-        $template = file_get_contents($this->rootPath.'/src/Templates/Controllers/Api.php');
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/Api.php');
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
