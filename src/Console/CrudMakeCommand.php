@@ -50,7 +50,8 @@ class CrudMakeCommand extends Command
             'controller_name' => ['required'],
             'crud_url' => ['required'],
             'model_name' => ['required'],
-            'table_name' => ['required']
+            'table_name' => ['required'],
+            'author' => ['required']
         ]);
         if($validator->fails()){
             foreach($validator->errors()->all() as $error){
@@ -71,6 +72,7 @@ class CrudMakeCommand extends Command
         $this->params['crud_url'] = $this->ask('CRUD url');
         $this->params['model_name'] = $this->ask('Model name');
         $this->params['table_name'] = $this->ask('Table name');
+        $this->params['author'] = env('PACKAGE_AUTHOR');
     }
 
     /**
