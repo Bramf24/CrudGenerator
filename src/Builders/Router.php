@@ -28,7 +28,7 @@ class Router{
      */
     private function addNewRouteGroup(){
         DB::table('crud_route_groups')->updateOrInsert([
-            'name'=>$this->params['crud_url']
+            'name'=>$this->buildParams['ParamUrl']
         ],[]);
     }
 
@@ -40,6 +40,7 @@ class Router{
         $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Routes/route-group.template');
         $routesData = '';
         foreach($groups as $group){
+            $this->buildParams['ParamUrl'] = $group->name;
             foreach($this->buildParams as $param => $value){
                 $template = str_replace($param,$value,$template);
             }

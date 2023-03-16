@@ -3,5 +3,6 @@ $this->app->router->group(['prefix' => 'ParamUrl'], function(){
     $this->app->router->post('/','ParamController@create');
     $this->app->router->get('/','ParamController@all');
     $this->app->router->get('/{id}','ParamController@get');
-    $this->app->router->post('/auth','ParamController@auth');
+    $this->app->router->put('/{id}','ParamController@update');
+    $this->app->router->delete('/{id}','ParamController@delete');
 });
