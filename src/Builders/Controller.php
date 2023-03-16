@@ -11,7 +11,8 @@ class Controller{
         $this->buildParams['ParamModelLower'] = Str::lower($this->params['model_name']);
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
-        $this->rootPath = dirname(\Composer\Factory::getComposerFile());
+        $reflection = new \ReflectionClass(\Composer\Autoload\ClassLoader::class);
+        $this->rootPath = dirname($reflection->getFileName());
     }
 
     /**
