@@ -7,6 +7,7 @@ class Controller extends Command{
     public function __construct(
         private array $params
     ){
+        parent::__construct();
         $this->buildParams['ParamController'] = $this->params['controller_name'];
         $this->buildParams['ParamModelLower'] = Str::lower($this->params['model_name']);
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
