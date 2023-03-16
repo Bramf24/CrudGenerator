@@ -1,0 +1,11 @@
+/**
+    * @OA\Property(
+    *   format="ParamUdt",
+    *   title="ParamName",
+    *   description="ParamDescription"
+    * )
+    * 
+    * @var ParamType
+    * 
+*/
+private $ParamName;

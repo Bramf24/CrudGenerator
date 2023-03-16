@@ -78,6 +78,7 @@ class Model{
             $template = str_replace($param,$value,$template);
         }
         $template = str_replace('#RULES',$this->generateRules(),$template);
+        $this->generateProperties();
         file_put_contents(base_path().'/app/Models/'.$this->buildParams['ParamModel'].'.php',$template);
         $this->output->writeln('<info>Model '.$this->buildParams['ParamModel'].' created successfully</info>');
     }
@@ -137,6 +138,34 @@ class Model{
         $output = [];
         foreach($this->fields as $field){
             $output[] = '"'.$field['name'].'" => "'.implode("|",$field['rules']).'",';
+        }
+        return join("\n",$output);
+    }
+
+    /**
+     * Transform keys to string array
+     */
+    private function fillable($keys){
+        $result = [];
+        foreach($keys as $key){
+            $result[] = '"'.$key.'"';
+        }
+        return join(", ",$result);
+    }
+
+    private function generateProperties(){
+        $output = [];
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Models/ModelProperty.template');
+        foreach($this->fields as $field){
+            $description = Str::snake($field['name'],' ');
+            if($field['foreign']){
+                $description = $field['name'].' is related to '.$field['foreign_table'].'.'.$field['foreign_table_column'];
+            }
+            $template = str_replace('ParamUdt',$field['udt'],$template);
+            $template = str_replace('ParamName',$field['name'],$template);
+            $template = str_replace('ParamDescription',$description,$template);
+            $template = str_replace('ParamType',$field['rules']['type'],$template);
+            $output[] = $template;
         }
         return join("\n",$output);
     }
