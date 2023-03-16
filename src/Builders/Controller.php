@@ -1,6 +1,7 @@
 <?php namespace Bramf\CrudGenerator\Builders;
 
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Controller{
     public function __construct(
@@ -11,6 +12,7 @@ class Controller{
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
         $this->buildParams['ParamModel'] = $this->params['model_name'];
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
+        $this->output = new ConsoleOutput();
     }
 
     /**
@@ -22,6 +24,6 @@ class Controller{
             $template = str_replace($param,$value,$template);
         }
         file_put_contents(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php',$template);
-        info('Controller '.$this->buildParams['ParamController'].' created successfully');
+        $this->output->writeIn('<info>Controller '.$this->buildParams['ParamController'].' created successfully</info>');
     }
 }
