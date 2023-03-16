@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('crud_route_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name',200);
+            $table->string('group_name',200);
+            $table->string('controller_name',200);
             $table->timestamps();
         });
     }
