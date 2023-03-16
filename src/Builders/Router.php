@@ -28,9 +28,10 @@ class Router{
      */
     private function addNewRouteGroup(){
         DB::table('crud_route_groups')->updateOrInsert([
-            'group_name'=>$this->buildParams['ParamUrl'],
+            'group_name'=>$this->buildParams['ParamUrl']            
+        ],[
             'controller_name'=>$this->buildParams['ParamController']
-        ],[]);
+        ]);
     }
 
     /**
