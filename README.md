@@ -140,3 +140,13 @@ php artisan make:crud:table
 ```
 Generate CRUD for all your tables. You can set names of tables, that will be excluded from generation.
 Default names of tables, that will be excluded: 'users','crud_route_groups','migrations'.
+
+Add 
+```bash
+"scripts": {
+    "post-update-cmd": [
+        "@php artisan make:crud:table --auto"
+    ]
+}
+```
+to your root composer.json file for auto generate crud after composer update run.
