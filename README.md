@@ -9,9 +9,6 @@ Run commands below:
 ```bash
 composer require bramf/crud-generator
 ```
-```bash
-php artisan migrate
-```
 ## Environment Variables
 
 After installing package change database connection settings and put SWAGGER_VERSION,PACKAGE_AUTHOR variable to your .env file:
@@ -71,13 +68,17 @@ $app->withFacades();
 $app->withEloquent();
 ```
 
+Run package migrations:
+```bash
+php artisan migrate
+```
+
 ## Usage
 
 Before use command you need to create and run migration, that creates table for CRUD operations, for example:
 ```bash
 php artisan make:migration create_tests_table
 ```
-
 ```bash
 php artisan migrate
 ```
@@ -104,11 +105,11 @@ Command will ask you required parameters to make CRUD:
 */
 $router->group(["prefix"=>"api/test"],function() use($router){
     // CRUD
-    $router->post("/","Controller@create");
-    $router->get("/","Controller@all");
-    $router->get("/{id}","Controller@get");
-    $router->put("/{id}","Controller@update");
-    $router->delete("/{id}","Controller@delete");
+    $router->post("/","TestController@create");
+    $router->get("/","TestController@all");
+    $router->get("/{id}","TestController@get");
+    $router->put("/{id}","TestController@update");
+    $router->delete("/{id}","TestController@delete");
 });
 ```
 - Model name: name of model for CRUD operations.
