@@ -59,12 +59,11 @@ class CrudMakeTableCommand extends Command{
     private function crud(){
         foreach($this->tables as $table){
             $params = $this->prepareParams($table);
-            dump($params);
-            // (new Controller($params))->build();
-            // (new Router($params))->build();
-            // (new Model($params))->build();
-            // $this->call('make:swagger');
-            // $this->info('OpenApi annotations created successfully');
+            (new Controller($params))->build();
+            (new Router($params))->build();
+            (new Model($params))->build();
+            $this->call('make:swagger');
+            $this->info('OpenApi annotations created successfully');
         }
     }
 
