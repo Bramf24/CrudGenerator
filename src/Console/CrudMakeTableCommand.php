@@ -80,7 +80,8 @@ class CrudMakeTableCommand extends Command{
         $exceptions = array_filter($exceptions);
         $this->tables = DB::table('information_schema.tables')->select([
             'table_name'
-        ])->where('table_schema','public')->whereNotIn('table_name',$exceptions)->get()->reverse();
+        ])->where('table_schema','public')->whereNotIn('table_name',$exceptions)
+        ->orderBy('table_name')->get()->reverse();
     }
 
     /**
