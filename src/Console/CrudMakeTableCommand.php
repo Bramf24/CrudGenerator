@@ -68,10 +68,10 @@ class CrudMakeTableCommand extends Command{
             (new Controller($params))->build();
             (new Router($params))->build();
             (new Model($params))->build();
-            $this->call('make:swagger');
-            $this->info('OpenApi annotations created successfully');
-            $this->newLine();
         }
+        $this->call('make:swagger');
+        $this->info('OpenApi annotations created successfully');
+        $this->newLine();
     }
 
     /**
