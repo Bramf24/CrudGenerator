@@ -129,6 +129,7 @@ command, that generate json file with open api annotations. File location:
 ./public/swagger.json
 ```
 
+Additional commands:
 ```bash
 php artisan crud:route
 ```
