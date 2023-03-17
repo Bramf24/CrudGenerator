@@ -17,7 +17,7 @@
     "authors": [
         {
             "name": "Vlad",
-            "email": "vladmunj@gmail.com"
+            "email": "mun.vladislav.a@gmail.com"
         }
     ],
     "require": {
@@ -25,5 +25,13 @@
         "zircote/swagger-php": "^4.7",
         "flipbox/lumen-generator": "^9.2.0",
         "awobaz/compoships": "^2.2.3"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan make:crud:table --auto"
+        ],
+        "post-update-cmd": [
+            "php artisan make:crud:table --auto"
+        ]
     }
 }
