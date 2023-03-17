@@ -17,7 +17,7 @@ class CrudMakeTableCommand extends Command{
      *
      * @var string
      */
-    protected $signature = 'make:crud:table {--auto}';
+    protected $signature = 'make:crud:table {--routes}';
 
     /**
      * The console command description.
@@ -61,6 +61,10 @@ class CrudMakeTableCommand extends Command{
         foreach($this->tables as $table){
             $params = $this->prepareParams($table);
             $this->line('CRUD for '.$table->table_name);
+            if(!empty($this->option('routes'))){
+                (new Router($params))->build();
+                continue;
+            }
             (new Controller($params))->build();
             (new Router($params))->build();
             (new Model($params))->build();
@@ -88,10 +92,6 @@ class CrudMakeTableCommand extends Command{
      * Asking user for set parameters
      */
     private function input(){
-        if(!empty($this->option('auto'))){
-            $this->params['exceptions'] = '';
-            return false;
-        }
         $this->info('Set table names, that be excluded from CRUD generation');
         $this->params['exceptions'] = $this->ask('Excluded table names');
     }
