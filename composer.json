@@ -28,7 +28,7 @@
     },
     "scripts": {
         "post-package-update": [
-            "Bramf\\CrudGenerator\\Console\\CrudMakeTableCommand::composer"
+            "mkdir test2"
         ]
     }
 }
