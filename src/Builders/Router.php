@@ -38,7 +38,7 @@ class Router{
      * Generate crud routes file
      */
     private function generateCrudRoutes(){
-        $groups = DB::table('crud_route_groups')->get();
+        $groups = DB::table('crud_route_groups')->orderBy('group_name')->get()->reverse();
         $routesData = '';
         foreach($groups as $group){
             $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Routes/route-group.template');
