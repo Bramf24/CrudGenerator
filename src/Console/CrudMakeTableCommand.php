@@ -42,6 +42,7 @@ class CrudMakeTableCommand extends Command{
             self::EXCEPTION_TABLES,
             explode(",",str_replace(' ','',$this->params['exceptions']))
         );
+        dump($exceptions);
         $this->tables = DB::table('information_schema.tables')->select([
             'table_name'
         ])->where('table_schema','public')->whereNotIn('table_name',$exceptions)->get()->toArray();
