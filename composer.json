@@ -28,7 +28,7 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "php artisan make:crud:table --auto"
+            "php artisan route:list"
         ]
     }
 }
