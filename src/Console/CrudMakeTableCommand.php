@@ -97,6 +97,14 @@ class CrudMakeTableCommand extends Command{
     }
 
     /**
+     * generate crud for all tables by composer
+     */
+    public static function composer(){
+        $this->getTableNames();
+        $this->crud();
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
