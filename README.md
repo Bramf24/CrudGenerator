@@ -149,4 +149,4 @@ Add
     ]
 }
 ```
-to your root composer.json file for auto generate crud after composer update run.
+to your root composer.json file for auto generate CRUD after composer update is executed.
