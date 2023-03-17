@@ -42,14 +42,12 @@ class CrudMakeTableCommand extends Command{
      * prepare params for crud
      */
     private function prepareParams($table){
-        $dictionary = json_decode(file_get_contents(base_path().'/vendor/bramf/crud-generator/src/dictionaries/plural_to_singular.json'),true);
         $controllerName = implode('',array_map(function($part){
-            $part = $dictionary[$part] ?? $part;
-            return Str::ucfirst($part);
+            return Str::ucfirst(Str::singular($part));
         },explode("_",$table->table_name)));
-        $params['controller_name'] = rtrim($controllerName,'s').'Controller';
-        $params['model_name'] = rtrim($controllerName,'s');
-        $params['crud_url'] = 'api/'.str_replace('_','/',$table->table_name);
+        $params['controller_name'] = $controllerName.'Controller';
+        $params['model_name'] = $controllerName;
+        $params['crud_url'] = 'api/'.str_replace('_','/',Str::singular($table->table_name));
         $params['table_name'] = $table->table_name;
         $params['author'] = env('PACKAGE_AUTHOR');
         return $params;
@@ -61,6 +59,7 @@ class CrudMakeTableCommand extends Command{
     private function crud(){
         foreach($this->tables as $table){
             $params = $this->prepareParams($table);
+            dump($params);
             // $this->line('CRUD for '.$table->table_name);
             // (new Controller($params))->build();
             // (new Router($params))->build();
