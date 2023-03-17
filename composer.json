@@ -28,7 +28,7 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "@php -r \"echo 'test';\""
+            "Bramf\\CrudGenerator\\Console\\CrudMakeTableCommand::composer"
         ]
     }
 }
