@@ -27,9 +27,8 @@
         "awobaz/compoships": "^2.2.3"
     },
     "scripts": {
-        "post-update-cmd": [
+        "post-package-update": [
             "@php artisan make:crud:table --auto"
         ]
     }
 }
-
