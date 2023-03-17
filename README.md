@@ -128,3 +128,16 @@ command, that generate json file with open api annotations. File location:
 ```bash
 ./public/swagger.json
 ```
+
+## Avalaible commands:
+
+```bash
+php artisan crud:route
+```
+Delete crud route group by id, or all route groups, if you set id = 0
+
+```bash
+php artisan make:crud:table
+```
+Generate CRUD for all your tables. You can set names of tables, that will be excluded from generation.
+Default names of tables, that will be excluded: 'users','crud_route_groups','migrations'.
