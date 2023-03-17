@@ -75,7 +75,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
      */
     protected function registerCrudMakeTableCommand()
     {
-        $this->app->singleton('command.crud.route', function ($app) {
+        $this->app->singleton('command.crud.make.table', function ($app) {
             return new Console\CrudMakeTableCommand();
         });
     }
