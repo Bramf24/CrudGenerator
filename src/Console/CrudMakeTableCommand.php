@@ -2,6 +2,10 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Bramf\CrudGenerator\Builders\Controller;
+use Bramf\CrudGenerator\Builders\Router;
+use Bramf\CrudGenerator\Builders\Model;
 
 class CrudMakeTableCommand extends Command{
     const EXCEPTION_TABLES = [
@@ -35,6 +39,36 @@ class CrudMakeTableCommand extends Command{
     }
 
     /**
+     * prepare params for crud
+     */
+    private function prepareParams($table){
+        $controllerName = implode('',array_map(function($part){
+            return Str::ucfirst($part);
+        }),explode("_",$table->table_name));
+        $params['controller_name'] = rtrim($controllerName,'s').'Controller';
+        $params['model_name'] = rtrim($controllerName,'s');
+        $params['crud_url'] = 'api/'.rtrim(str_replace('_','/',$table->table_name),'s');
+        $params['table_name'] = $table->table_name;
+        $params['author'] = env('PACKAGE_AUTHOR');
+        return $params;
+    }
+
+    /**
+     * generate crud controller,model and routes
+     */
+    private function crud(){
+        foreach($this->tables as $table){
+            $params = $this->prepareParams($table);
+            dump($params);
+            // (new Controller($params))->build();
+            // (new Router($params))->build();
+            // (new Model($params))->build();
+            // $this->call('make:swagger');
+            // $this->info('OpenApi annotations created successfully');
+        }
+    }
+
+    /**
      * get all tables names, excluding exception tables
      */
     private function getTableNames(){
@@ -43,10 +77,9 @@ class CrudMakeTableCommand extends Command{
             explode(",",str_replace(' ','',$this->params['exceptions']))
         );
         $exceptions = array_filter($exceptions);
-        dump($exceptions);
         $this->tables = DB::table('information_schema.tables')->select([
             'table_name'
-        ])->where('table_schema','public')->whereNotIn('table_name',$exceptions)->get()->toArray();
+        ])->where('table_schema','public')->whereNotIn('table_name',$exceptions)->get();
     }
 
     /**
@@ -66,6 +99,6 @@ class CrudMakeTableCommand extends Command{
     {
         $this->input();
         $this->getTableNames();
-        dump($this->tables);
+        $this->crud();
     }
 }
