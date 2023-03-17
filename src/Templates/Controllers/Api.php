@@ -61,7 +61,7 @@ class ParamController extends Controller{
         *     )
         *   ),
         *   @OA\Response(response=401, description="Unauthorized"),
-        *   @OA\Response(response=400, description="Validation errors")
+        *   @OA\Response(response=422, description="Validation errors")
         * )
     */
     private $create;
@@ -81,7 +81,7 @@ class ParamController extends Controller{
         *     )
         *   ),
         *   @OA\Response(response=401, description="Unauthorized"),
-        *   @OA\Response(response=400, description="Validation errors")
+        *   @OA\Response(response=422, description="Validation errors")
         * )
     */
     private $update;
