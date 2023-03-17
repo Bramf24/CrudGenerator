@@ -28,7 +28,7 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "php artisan route:list"
+            "@php artisan route:list"
         ]
     }
 }
