@@ -89,7 +89,7 @@ class CrudMakeTableCommand extends Command{
      */
     private function input(){
         if(!empty($this->option('auto'))){
-            $this->params['exceptions'] = [];
+            $this->params['exceptions'] = '';
             return false;
         }
         $this->info('Set table names, that be excluded from CRUD generation');
