@@ -145,7 +145,7 @@ Add
 ```bash
 "scripts": {
     "post-update-cmd": [
-        "@php artisan make:crud:table --auto"
+        "@php artisan make:crud:table --routes"
     ]
 }
 ```
