@@ -75,7 +75,7 @@ class Model{
      */
     public function build(){
         $this->getModelFields();
-        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Models/Model.php');
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Models/Crud.php');
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
@@ -86,6 +86,13 @@ class Model{
             mkdir($this->modelCrudDir);
         }
         file_put_contents(base_path().'/app/Models/Crud/'.$this->buildParams['ParamModel'].'.php',$template);
+        if(!file_exists(base_path().'/app/Models/'.$this->buildParams['ParamModel'].'.php',)){
+            $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Models/Base.php');
+            foreach($this->buildParams as $param => $value){
+                $template = str_replace($param,$value,$template);
+            }
+            file_put_contents(base_path().'/app/Models/'.$this->buildParams['ParamModel'].'.php',$template);
+        }
         $this->output->writeln('<info>Model '.$this->buildParams['ParamModel'].' created successfully</info>');
     }
 

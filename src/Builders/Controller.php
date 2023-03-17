@@ -20,7 +20,7 @@ class Controller{
      * Build controller file
      */
     public function build(){
-        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/Api.php');
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/Crud.php');
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
@@ -28,6 +28,13 @@ class Controller{
             mkdir($this->controllerCrudDir);
         }
         file_put_contents(base_path().'/app/Http/Controllers/Crud/'.$this->buildParams['ParamController'].'.php',$template);
+        if(!file_exists(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php')){
+            $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/Base.php');
+            foreach($this->buildParams as $param => $value){
+                $template = str_replace($param,$value,$template);
+            }
+            file_put_contents(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php',$template);
+        }
         $this->output->writeln('<info>Controller '.$this->buildParams['ParamController'].' created successfully</info>');
     }
 }
