@@ -28,7 +28,7 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "Bramf\\CrudGenerator\\Console\\CrudMakeTableCommand::composer"
+            "@php artisan make:crud:table --auto"
         ]
     }
 }
