@@ -42,13 +42,15 @@ class CrudMakeTableCommand extends Command{
      * prepare params for crud
      */
     private function prepareParams($table){
+        $dictionary = json_decode(file_get_contents(base_path().'/vendor/bramf/crud-generator/src/dictionaries/plural_to_singular.json'),true);
+        $tableName = $dictionary[$table->table_name] ?? $table->table_name;
         $controllerName = implode('',array_map(function($part){
             return Str::ucfirst($part);
-        },explode("_",$table->table_name)));
+        },explode("_",$tableName)));
         $params['controller_name'] = rtrim($controllerName,'s').'Controller';
         $params['model_name'] = rtrim($controllerName,'s');
-        $params['crud_url'] = 'api/'.str_replace('_','/',$table->table_name);
-        $params['table_name'] = $table->table_name;
+        $params['crud_url'] = 'api/'.str_replace('_','/',$tableName);
+        $params['table_name'] = $tableName;
         $params['author'] = env('PACKAGE_AUTHOR');
         return $params;
     }
@@ -59,13 +61,14 @@ class CrudMakeTableCommand extends Command{
     private function crud(){
         foreach($this->tables as $table){
             $params = $this->prepareParams($table);
-            $this->line('CRUD for '.$table->table_name);
-            (new Controller($params))->build();
-            (new Router($params))->build();
-            (new Model($params))->build();
-            $this->call('make:swagger');
-            $this->info('OpenApi annotations created successfully');
-            $this->newLine();
+            dump($params);
+            // $this->line('CRUD for '.$table->table_name);
+            // (new Controller($params))->build();
+            // (new Router($params))->build();
+            // (new Model($params))->build();
+            // $this->call('make:swagger');
+            // $this->info('OpenApi annotations created successfully');
+            // $this->newLine();
         }
     }
 
