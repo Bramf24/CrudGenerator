@@ -27,11 +27,14 @@
         "awobaz/compoships": "^2.2.3"
     },
     "scripts": {
-        "post-install-cmd": [
+        "auto-generate-crud":[
             "php artisan make:crud:table --auto"
         ],
+        "post-install-cmd": [
+            "@auto-generate-crud"
+        ],
         "post-update-cmd": [
-            "php artisan make:crud:table --auto"
+            "@auto-generate-crud"
         ]
     }
 }
