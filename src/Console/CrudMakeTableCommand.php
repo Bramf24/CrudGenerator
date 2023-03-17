@@ -57,6 +57,7 @@ class CrudMakeTableCommand extends Command{
      * generate crud controller,model and routes
      */
     private function crud(){
+        DB::table('crud_route_groups')->truncate();
         foreach($this->tables as $table){
             $params = $this->prepareParams($table);
             $this->line('CRUD for '.$table->table_name);
