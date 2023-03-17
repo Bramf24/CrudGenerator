@@ -27,7 +27,7 @@
         "awobaz/compoships": "^2.2.3"
     },
     "scripts": {
-        "post-update-cmd": [
+        "post-package-update": [
             "@auto-generate-crud"
         ],
         "auto-generate-crud": [
