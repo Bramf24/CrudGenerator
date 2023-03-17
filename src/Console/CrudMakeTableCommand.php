@@ -17,7 +17,7 @@ class CrudMakeTableCommand extends Command{
      *
      * @var string
      */
-    protected $signature = 'make:crud:table --auto';
+    protected $signature = 'make:crud:table {--auto}';
 
     /**
      * The console command description.
