@@ -28,7 +28,7 @@
     },
     "scripts": {
         "auto-generate-crud":[
-            "php artisan make:crud:table --auto"
+            "@php artisan make:crud:table --auto"
         ],
         "post-install-cmd": [
             "@auto-generate-crud"
