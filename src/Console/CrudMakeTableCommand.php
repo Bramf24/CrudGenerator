@@ -88,6 +88,10 @@ class CrudMakeTableCommand extends Command{
      * Asking user for set parameters
      */
     private function input(){
+        if(!empty($this->option('auto'))){
+            $this->params['exceptions'] = [];
+            return false;
+        }
         $this->info('Set table names, that be excluded from CRUD generation');
         $this->params['exceptions'] = $this->ask('Excluded table names');
     }
