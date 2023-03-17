@@ -47,7 +47,7 @@ class CrudMakeTableCommand extends Command{
         },explode("_",$table->table_name)));
         $params['controller_name'] = rtrim($controllerName,'s').'Controller';
         $params['model_name'] = rtrim($controllerName,'s');
-        $params['crud_url'] = 'api/'.rtrim(str_replace('_','/',$table->table_name),'s');
+        $params['crud_url'] = 'api/'.str_replace('_','/',$table->table_name);
         $params['table_name'] = $table->table_name;
         $params['author'] = env('PACKAGE_AUTHOR');
         return $params;
