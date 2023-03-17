@@ -13,6 +13,7 @@ class Controller{
         $this->buildParams['ParamModel'] = $this->params['model_name'];
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
         $this->output = new ConsoleOutput();
+        $this->controllerCrudDir = base_path().'/app/Http/Controllers/Crud';
     }
 
     /**
@@ -23,7 +24,10 @@ class Controller{
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
-        file_put_contents(base_path().'/app/Http/Controllers/'.$this->buildParams['ParamController'].'.php',$template);
+        if(!file_exists($this->controllerCrudDir) && !is_dir($this->controllerCrudDir)){
+            mkdir($this->controllerCrudDir);
+        }
+        file_put_contents(base_path().'/app/Http/Controllers/Crud/'.$this->buildParams['ParamController'].'.php',$template);
         $this->output->writeln('<info>Controller '.$this->buildParams['ParamController'].' created successfully</info>');
     }
 }

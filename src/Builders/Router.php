@@ -46,6 +46,6 @@ class Router{
             $template = str_replace('ParamController',$group->controller_name,$template);
             $routesData .= $template;
         }
-        file_put_contents(base_path().'/vendor/bramf/crud-generator/src/routes/crud.php','<?php'.$routesData);
+        file_put_contents($this->routesPath,'<?php'.$routesData);
     }
 }

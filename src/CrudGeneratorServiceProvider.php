@@ -97,7 +97,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
      */
     public function boot()
     {
-        $groupOptions = ['namespace' => 'App\Http\Controllers'];
+        $groupOptions = ['namespace' => 'App\Http\Controllers\Crud'];
         if(!empty(env('JWT_SECRET'))) $groupOptions['middleware'] = 'auth:api';
         Route::group($groupOptions, function($router){
             require base_path().'/vendor/bramf/crud-generator/src/routes/crud.php';

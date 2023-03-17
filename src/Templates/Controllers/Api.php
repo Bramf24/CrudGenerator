@@ -1,10 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Crud;
 
 use Illuminate\Http\Request;
 use Bramf\CrudGenerator\Traits\RestActions;
 
 class ParamController extends Controller{
-    const MODEL = 'App\Models\ParamModel';
+    const MODEL = 'App\Models\Crud\ParamModel';
 
     use RestActions;
 
