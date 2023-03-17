@@ -28,7 +28,7 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "mkdir test2"
+            "@php -r \"echo 'test';\""
         ]
     }
 }
