@@ -27,7 +27,7 @@
         "awobaz/compoships": "^2.2.3"
     },
     "scripts": {
-        "post-package-update": [
+        "post-update-cmd": [
             "mkdir test2"
         ]
     }
