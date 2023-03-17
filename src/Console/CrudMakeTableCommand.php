@@ -44,7 +44,7 @@ class CrudMakeTableCommand extends Command{
     private function prepareParams($table){
         $controllerName = implode('',array_map(function($part){
             return Str::ucfirst($part);
-        }),explode("_",$table->table_name));
+        },explode("_",$table->table_name)));
         $params['controller_name'] = rtrim($controllerName,'s').'Controller';
         $params['model_name'] = rtrim($controllerName,'s');
         $params['crud_url'] = 'api/'.rtrim(str_replace('_','/',$table->table_name),'s');
