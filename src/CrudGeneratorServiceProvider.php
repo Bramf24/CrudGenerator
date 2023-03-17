@@ -12,7 +12,8 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
     protected $commands = [
         'SwaggerMake' => 'command.swagger.make',
         'CrudMake' => 'command.crud.make',
-        'CrudRoute' => 'command.crud.route'
+        'CrudRoute' => 'command.crud.route',
+        'CrudMakeTable' => 'command.crud.make.table'
     ];
 
     /**
@@ -66,6 +67,16 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
     {
         $this->app->singleton('command.crud.route', function ($app) {
             return new Console\CrudRouteCommand();
+        });
+    }
+
+    /**
+     * Register the command.
+     */
+    protected function registerCrudMakeTableCommand()
+    {
+        $this->app->singleton('command.crud.route', function ($app) {
+            return new Console\CrudMakeTableCommand();
         });
     }
 
