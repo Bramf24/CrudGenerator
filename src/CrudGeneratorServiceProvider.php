@@ -98,7 +98,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
     public function boot()
     {
         if(!file_exists(base_path().'/routes/crud/routes.php')){
-            $file = file_open(base_path().'/routes/crud/routes.php','w');
+            $file = fopen(base_path().'/routes/crud/routes.php','w');
             fclose($file);
         }
         $groupOptions = ['namespace' => 'App\Http\Controllers'];
