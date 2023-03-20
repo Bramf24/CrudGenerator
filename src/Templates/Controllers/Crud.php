@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Bramf\CrudGenerator\Traits\RestActions;
+use App\Http\Controllers\Controller;
 
 class ParamController extends Controller{
     const MODEL = 'App\Models\Crud\ParamModel';
