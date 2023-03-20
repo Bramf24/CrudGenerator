@@ -97,6 +97,9 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
      */
     public function boot()
     {
+        if(!file_exists(base_path().'/routes/crud/routes.php')){
+            file_put_contents(base_path().'/routes/crud/routes.php','');
+        }
         $groupOptions = ['namespace' => 'App\Http\Controllers'];
         if(!empty(env('JWT_SECRET'))) $groupOptions['middleware'] = 'auth:api';
         Route::group($groupOptions, function($router){

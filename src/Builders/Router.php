@@ -46,7 +46,6 @@ class Router{
             $template = str_replace('ParamController',$group->controller_name,$template);
             $routesData .= $template;
         }
-        if(!file_exists($this->routesPath)) file_put_contents($this->routesPath,'');
         file_put_contents($this->routesPath,'<?php'.$routesData);
     }
 }
