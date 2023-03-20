@@ -100,7 +100,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
         $groupOptions = ['namespace' => 'App\Http\Controllers'];
         if(!empty(env('JWT_SECRET'))) $groupOptions['middleware'] = 'auth:api';
         Route::group($groupOptions, function($router){
-            require base_path().'/vendor/bramf/crud-generator/src/routes/crud.php';
+            require base_path().'/routes/crud/routes.php';
         });
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }

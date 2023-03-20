@@ -17,7 +17,7 @@ class CrudMakeTableCommand extends Command{
      *
      * @var string
      */
-    protected $signature = 'make:crud:table {--routes}';
+    protected $signature = 'make:crud:table';
 
     /**
      * The console command description.
@@ -61,10 +61,6 @@ class CrudMakeTableCommand extends Command{
         foreach($this->tables as $table){
             $params = $this->prepareParams($table);
             $this->line('CRUD for '.$table->table_name);
-            if(!empty($this->option('routes'))){
-                (new Router($params))->build();
-                continue;
-            }
             (new Controller($params))->build();
             (new Router($params))->build();
             (new Model($params))->build();

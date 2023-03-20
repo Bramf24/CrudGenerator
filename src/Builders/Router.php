@@ -8,7 +8,7 @@ class Router{
     public function __construct(
         private array $params
     ){
-        $this->routesPath = base_path().'/vendor/bramf/crud-generator/src/routes/crud.php';
+        $this->routesPath = base_path().'/routes/crud/routes.php';
         $this->output = new ConsoleOutput();
         $this->buildParams['ParamController'] = $this->params['controller_name'];
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
@@ -46,6 +46,7 @@ class Router{
             $template = str_replace('ParamController',$group->controller_name,$template);
             $routesData .= $template;
         }
+        if(!file_exists($this->routesPath)) file_put_contents($this->routesPath,'');
         file_put_contents($this->routesPath,'<?php'.$routesData);
     }
 }
