@@ -73,16 +73,6 @@ Run package migrations:
 php artisan migrate
 ```
 
-Add 
-```bash
-"scripts": {
-    "post-update-cmd": [
-        "@php artisan make:crud:table --routes"
-    ]
-}
-```
-to your root composer.json file for auto generate CRUD routes after composer update is executed.
-
 ## Usage
 
 Before use command you need to create and run migration, that creates table for CRUD operations, for example:
