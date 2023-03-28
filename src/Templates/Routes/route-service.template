@@ -1,0 +1,6 @@
+
+$router->get('ParamControllerLower','ParamControllerController@all');
+$router->get('ParamControllerLower/{id}','ParamControllerController@get');
+$router->post('ParamControllerLower','ParamControllerController@create');
+$router->put('ParamControllerLower','ParamControllerController@update');
+$router->delete('ParamControllerLower','ParamControllerController@delete');

@@ -3,6 +3,7 @@
 use Illuminate\Console\Command;
 use Bramf\CrudGenerator\Builders\ServiceController;
 use Bramf\CrudGenerator\Builders\Service;
+use Bramf\CrudGenerator\Builders\ServiceRouter;
 
 class ApiServiceMakeCommand extends Command{
     /**
@@ -41,6 +42,7 @@ class ApiServiceMakeCommand extends Command{
             $this->line('Api service '.$name);
             (new ServiceController(['controller_name'=>$name]))->build();
             (new Service(['service_name'=>$name]))->build();
+            (new ServiceRouter(['controller_name'=>$name]))->build();
         }
     }
 }

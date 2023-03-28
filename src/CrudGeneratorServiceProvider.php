@@ -118,6 +118,16 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
         Route::group($groupOptions, function($router){
             require base_path().'/routes/crud/routes.php';
         });
+        if(!file_exists(base_path().'/routes/services/routes.php')){
+            mkdir(base_path().'/routes/services',0755,true);
+            $file = fopen(base_path().'/routes/services/routes.php','w');
+            fwrite($file,'<?php'."\n");
+            fclose($file);
+        }
+        $groupOptions = ['namespace' => 'App\Http\Controllers\Services'];
+        Route::group($groupOptions, function($router){
+            require base_path().'/routes/services/routes.php';
+        });
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 }
