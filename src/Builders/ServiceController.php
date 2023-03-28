@@ -18,8 +18,8 @@ class ServiceController{
      * Build controller file
      */
     public function build(){
-        if(!file_exists($this->controllerCrudDir) && !is_dir($this->controllerCrudDir)){
-            mkdir($this->controllerCrudDir);
+        if(!file_exists($this->controllerServiceDir) && !is_dir($this->controllerServiceDir)){
+            mkdir($this->controllerServiceDir);
         }
         if(!file_exists($this->controllerServiceDir.'/'.$this->buildParams['ParamController'].'.php')){
             $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/Service.php');
