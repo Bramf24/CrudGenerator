@@ -124,7 +124,10 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
             fwrite($file,'<?php'."\n");
             fclose($file);
         }
-        $groupOptions = ['namespace' => 'App\Http\Controllers\Services'];
+        $groupOptions = [
+            'namespace' => 'App\Http\Controllers\Services',
+            'prefix' => '/api/services/'
+        ];
         Route::group($groupOptions, function($router){
             require base_path().'/routes/services/routes.php';
         });
