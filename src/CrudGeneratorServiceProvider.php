@@ -13,7 +13,8 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
         'SwaggerMake' => 'command.swagger.make',
         'CrudMake' => 'command.crud.make',
         'CrudRoute' => 'command.crud.route',
-        'CrudMakeTable' => 'command.crud.make.table'
+        'CrudMakeTable' => 'command.crud.make.table',
+        'ApiServiceMake' => 'command.api.service.make'
     ];
 
     /**
@@ -77,6 +78,16 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
     {
         $this->app->singleton('command.crud.make.table', function ($app) {
             return new Console\CrudMakeTableCommand();
+        });
+    }
+
+    /**
+     * Register the command.
+     */
+    protected function registerApiServiceMakeCommand()
+    {
+        $this->app->singleton('command.api.service.make', function ($app) {
+            return new Console\ApiServiceMakeCommand();
         });
     }
 
