@@ -8,6 +8,7 @@ class ServiceController{
         private array $params
     ){
         $this->buildParams['ParamController'] = Str::ucfirst($this->params['controller_name']);
+        $this->buildParams['ParamControllerPlural'] = Str::plural($this->buildParams['ParamController']);
         $this->buildParams['ParamControllerLower'] = Str::lower($this->params['controller_name']);
         $this->buildParams['ParamControllerLowerPlural'] = Str::plural($this->buildParams['ParamControllerLower']);
         $this->output = new ConsoleOutput();
