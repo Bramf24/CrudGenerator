@@ -5,7 +5,7 @@ use App\Traits\ApiRequest;
 /**
  * service for interacting with ParamServiceLowerPlural
  */
-class ParamServiceService{
+class ParamService{
     use ApiRequest;
     
     public function __construct(){
