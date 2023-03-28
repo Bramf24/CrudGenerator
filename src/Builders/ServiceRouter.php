@@ -1,6 +1,7 @@
 <?php namespace Bramf\CrudGenerator\Builders;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Illuminate\Support\Str;
 
 class ServiceRouter{
     public function __construct(
