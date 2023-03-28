@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Command;
 use Bramf\CrudGenerator\Builders\ServiceController;
+use Bramf\CrudGenerator\Builders\Service;
 
 class ApiServiceMakeCommand extends Command{
     /**
@@ -37,7 +38,9 @@ class ApiServiceMakeCommand extends Command{
     public function handle()
     {
         foreach($this->services as $name => $data){
+            $this->line('Api service '.$name);
             (new ServiceController(['controller_name'=>$name]))->build();
+            (new Service(['service_name'=>$name]))->build();
         }
     }
 }
