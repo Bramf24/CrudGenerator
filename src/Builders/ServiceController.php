@@ -21,12 +21,12 @@ class ServiceController{
         if(!file_exists($this->controllerServiceDir) && !is_dir($this->controllerServiceDir)){
             mkdir($this->controllerServiceDir);
         }
-        if(!file_exists($this->controllerServiceDir.'/'.$this->buildParams['ParamController'].'.php')){
+        if(!file_exists($this->controllerServiceDir.'/'.$this->buildParams['ParamController'].'Controller.php')){
             $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/Service.php');
             foreach($this->buildParams as $param => $value){
                 $template = str_replace($param,$value,$template);
             }
-            file_put_contents($this->controllerServiceDir.'/'.$this->buildParams['ParamController'].'.php',$template);
+            file_put_contents($this->controllerServiceDir.'/'.$this->buildParams['ParamController'].'Controller.php',$template);
         }
         $this->output->writeln('<info>Service controller '.$this->buildParams['ParamController'].' created successfully</info>');
     }
