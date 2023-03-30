@@ -12,6 +12,7 @@ class Controller{
         $this->buildParams['ParamModelSnake'] = Str::snake($this->params['model_name'],' ');
         $this->buildParams['ParamModel'] = $this->params['model_name'];
         $this->buildParams['ParamUrl'] = $this->params['crud_url'];
+        $this->buildParams['#JwtAuth'] = (env('JWT_SECRET') ? '$this->middleware("auth:api");' : '');
         $this->output = new ConsoleOutput();
         $this->controllerCrudDir = base_path().'/app/Http/Controllers/Crud';
     }

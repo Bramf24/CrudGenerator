@@ -11,6 +11,7 @@ class ServiceController{
         $this->buildParams['ParamControllerPlural'] = Str::plural($this->buildParams['ParamController']);
         $this->buildParams['ParamControllerLower'] = Str::lower($this->params['controller_name']);
         $this->buildParams['ParamControllerLowerPlural'] = Str::plural($this->buildParams['ParamControllerLower']);
+        $this->buildParams['#JwtAuth'] = (env('JWT_SECRET') ? '$this->middleware("auth:api");' : '');
         $this->output = new ConsoleOutput();
         $this->controllerServiceDir = base_path().'/app/Http/Controllers/Services';
     }

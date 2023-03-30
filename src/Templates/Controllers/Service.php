@@ -14,7 +14,9 @@ use App\Http\Controllers\Controller;
 class ParamControllerController extends Controller{
     public function __construct(
         private $ParamControllerLowerService = new ParamControllerService()
-    ){}
+    ){
+        #JwtAuth
+    }
     
     /**
      * @OA\Get(
