@@ -1,0 +1,7 @@
+        *   @OA\Parameter(
+        *     name="ParamName",
+        *     in="ParamIn",
+        *     description="ParamNameUcfirst",
+        *     required=ParamRequired,
+        *     @OA\Schema(type="ParamType"ParamMaxLength)
+        *   ),

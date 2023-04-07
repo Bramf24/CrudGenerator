@@ -145,6 +145,15 @@ class Model{
     }
 
     /**
+     * return model fields
+     * @return array $fields - array fields of model
+     */
+    public function getFields(){
+        $this->getModelFields();
+        return $this->fields;
+    }
+
+    /**
      * generate 'protected static $rules' array for model
      */
     private function generateRules(){

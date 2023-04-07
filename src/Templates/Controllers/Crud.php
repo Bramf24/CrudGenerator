@@ -15,6 +15,7 @@ class ParamController extends Controller{
         *   tags={"ParamModelLower"},
         *   description="Get all ParamModelSnakes",
         *   operationId="ParamModelLowerall",
+        *   #OARequest
         *   @OA\Response(
         *     response=200, 
         *     description="ParamModelSnake objects",

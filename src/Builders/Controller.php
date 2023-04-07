@@ -15,6 +15,40 @@ class Controller{
         $this->buildParams['#JwtAuth'] = (env('JWT_SECRET') ? '$this->middleware("auth:api");' : '');
         $this->output = new ConsoleOutput();
         $this->controllerCrudDir = base_path().'/app/Http/Controllers/Crud';
+        $this->modelBuilder = new Model($this->params);
+        $this->controllerRequestOA = [];
+        $this->controllerResponseOA = [];
+    }
+
+    /**
+     * Build open api annotations for method request
+     * @param array $fields - model fields
+     * @return string $template - generated open api annotations for request
+     */
+    private function buildOARequest($fields){
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/OARequest.temp');
+        $buildParams = [
+            'ParamName' => $fields['name'],
+            'ParamIn' => 'query',
+            'ParamNameUcfirst' => ucfirst($fields['name']),
+            'ParamRequired' => (!empty($fields['rules']['required']) ? true : false),
+            'ParamType' => $fields['type'],
+            'ParamMaxLength' => (!empty($fields['rules']['max']) ? ',maxLength='.str_replace('max:','',$fields['rules']['max']) : '')
+        ];
+        foreach($buildParams as $param => $value){
+            $template = str_replace($param,$value,$template);
+        }
+        return $template;
+    }
+
+    /**
+     * Generate request and response open api annotations
+     */
+    private function oaReqResp(){
+        $modelFields = $this->modelBuilder->getFields();
+        foreach($modelFields as $column => $fields){
+            $this->controllerRequestOA[] = $this->buildOARequest($fields);
+        }
     }
 
     /**
@@ -25,6 +59,7 @@ class Controller{
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
+        $template = str_replace('#OARequest',join("\n",$this->controllerRequestOA),$template);
         if(!file_exists($this->controllerCrudDir) && !is_dir($this->controllerCrudDir)){
             mkdir($this->controllerCrudDir);
         }
