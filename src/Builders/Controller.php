@@ -28,9 +28,9 @@ class Controller{
     private function buildOARequest($fields){
         $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/OARequest.temp');
         $buildParams = [
+            'ParamNameUcfirst' => ucfirst($fields['name']),
             'ParamName' => $fields['name'],
             'ParamIn' => 'query',
-            'ParamNameUcfirst' => ucfirst($fields['name']),
             'ParamRequired' => (!empty($fields['rules']['required']) ? true : false),
             'ParamType' => $fields['type'],
             'ParamMaxLength' => (!empty($fields['rules']['max']) ? ',maxLength='.str_replace('max:','',$fields['rules']['max']) : '')
