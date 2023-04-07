@@ -59,7 +59,10 @@ class ParamController extends Controller{
         *     description="ParamModelSnake object",
         *     @OA\JsonContent(
         *       type="array",
-        *       @OA\Items(ref="#/components/schemas/ParamModel")
+        *       @OA\Items(
+        *           type="object",
+#OAResponse
+        *       )
         *     )
         *   ),
         *   @OA\Response(response=401, description="Unauthorized"),

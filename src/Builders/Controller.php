@@ -31,9 +31,26 @@ class Controller{
             'ParamNameUcfirst' => ucfirst($fields['name']),
             'ParamName' => $fields['name'],
             'ParamIn' => 'query',
-            'ParamRequired' => (!empty($fields['rules']['required']) ? true : false),
+            'ParamRequired' => (!empty($fields['rules']['required']) ? 'true' : 'false'),
             'ParamType' => $fields['type'],
             'ParamMaxLength' => (!empty($fields['rules']['max']) ? ',maxLength='.str_replace('max:','',$fields['rules']['max']) : '')
+        ];
+        foreach($buildParams as $param => $value){
+            $template = str_replace($param,$value,$template);
+        }
+        return $template;
+    }
+
+    /**
+     * Build open api annotations for method response
+     * @param array $fields - model fields
+     * @return string $template - generated open api annotations for response
+     */
+    private function buildOAResponse($fields){
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Controllers/OAResponse.temp');
+        $buildParams = [
+            'ParamName' => $fields['name'],
+            'ParamType' => $fields['type']
         ];
         foreach($buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
@@ -48,6 +65,7 @@ class Controller{
         $modelFields = $this->modelBuilder->getFields();
         foreach($modelFields as $column => $fields){
             $this->controllerRequestOA[] = $this->buildOARequest($fields);
+            $this->controllerResponseOA[] = $this->buildOAResponse($fields);
         }
     }
 
@@ -61,6 +79,7 @@ class Controller{
         }
         $this->oaReqResp();
         $template = str_replace('#OARequest',join("\n",$this->controllerRequestOA),$template);
+        $template = str_replace('#OAResponse',join("\n",$this->controllerResponseOA),$template);
         if(!file_exists($this->controllerCrudDir) && !is_dir($this->controllerCrudDir)){
             mkdir($this->controllerCrudDir);
         }
