@@ -59,6 +59,7 @@ class Controller{
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
+        $this->oaReqResp();
         $template = str_replace('#OARequest',join("\n",$this->controllerRequestOA),$template);
         if(!file_exists($this->controllerCrudDir) && !is_dir($this->controllerCrudDir)){
             mkdir($this->controllerCrudDir);
