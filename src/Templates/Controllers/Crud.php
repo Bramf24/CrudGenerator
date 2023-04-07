@@ -53,7 +53,7 @@ class ParamController extends Controller{
         *   tags={"ParamModelLower"},
         *   description="Create new ParamModelSnake",
         *   operationId="ParamModelLowercreate",
-        *   #OARequest
+#OARequest
         *   @OA\Response(
         *     response=200, 
         *     description="ParamModelSnake object",
@@ -74,7 +74,7 @@ class ParamController extends Controller{
         *   tags={"ParamModelLower"},
         *   description="Update ParamModelSnake with given Id",
         *   operationId="ParamModelLowerupdate",
-        *   #OARequest
+#OARequest
         *   @OA\Response(
         *     response=200, 
         *     description="ParamModelSnake object",
