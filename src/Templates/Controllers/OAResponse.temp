@@ -1,5 +1,5 @@
-        *         @OA\Property(
-        *           property="ParamName",
-        *           type="ParamType",
-        *           example="ParamName"
-        *         ),
+        *           @OA\Property(
+        *             property="ParamName",
+        *             type="ParamType",
+        *             example="ParamName"
+        *           ),
