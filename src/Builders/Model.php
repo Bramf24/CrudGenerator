@@ -171,7 +171,7 @@ class Model{
      * Transform keys to string array
      */
     private function fillable($keys){
-        $result = [];
+        $result = ['"id"'];
         foreach($keys as $key){
             $result[] = '"'.$key.'"';
         }
