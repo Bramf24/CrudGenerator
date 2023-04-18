@@ -116,6 +116,9 @@ class Model{
         if($schema->is_nullable == 'NO' && is_null($schema->column_default)){
             $this->fields[$schema->column_name]['rules']['required'] = 'required';
         }
+        if($schema->is_nullable == 'YES'){
+            $this->fields[$schema->column_name]['rules']['nullable'] = 'nullable';
+        }
         if($type == 'string' && !is_null($schema->character_maximum_length)){
             $this->fields[$schema->column_name]['rules']['max'] = 'max:'.$schema->character_maximum_length;
         }
