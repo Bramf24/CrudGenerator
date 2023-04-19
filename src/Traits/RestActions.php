@@ -19,8 +19,12 @@ trait RestActions{
 
     public function create(Request $request): mixed{
         $this->validate($request,self::MODEL::$rules);
-        if(self::MODEL::where(Arr::only($request->all(),array_leys(self::MODEL::$rules)))->exists()) return false;
-        return response()->json(self::MODEL::create($request->all()),201);
+        $fields = Arr::only($request->all(),array_leys(self::MODEL::$rules));
+        if($model = self::MODEL::where($fields)->first()){
+            $model->update($fields);
+            return false;
+        }
+        return response()->json(self::MODEL::create($fields),201);
     }
 
     public function update(Request $request, int $id): mixed{
