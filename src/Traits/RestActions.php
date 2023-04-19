@@ -19,7 +19,7 @@ trait RestActions{
 
     public function create(Request $request): mixed{
         $this->validate($request,self::MODEL::$rules);
-        $fields = Arr::only($request->all(),array_keys(self::MODEL::$fillable));
+        $fields = Arr::only($request->all(),array_keys(self::MODEL::$rules));
         if($request->filled('id')) $fields['id'] = $request->id;
         if($model = self::MODEL::where($fields)->first()){
             $model->update($fields);
