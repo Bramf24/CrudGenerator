@@ -24,7 +24,8 @@ trait RestActions{
             $model->update($fields);
             return response()->json($fields,201);
         }
-        return response()->json(self::MODEL::create($fields),201);
+        self::MODEL::create($fields);
+        return response()->json($fields,201);
     }
 
     public function update(Request $request, int $id): mixed{
