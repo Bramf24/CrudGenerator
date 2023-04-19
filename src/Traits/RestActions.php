@@ -19,6 +19,7 @@ trait RestActions{
 
     public function create(Request $request): JsonResponse{
         $this->validate($request,self::MODEL::$rules);
+        if(self::MODEL::where($request->all())->exists()) return false;
         return response()->json(self::MODEL::create($request->all()),201);
     }
 
