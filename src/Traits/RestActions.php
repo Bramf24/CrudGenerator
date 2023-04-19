@@ -22,7 +22,7 @@ trait RestActions{
         $fields = Arr::only($request->all(),array_keys(self::MODEL::$rules));
         if($model = self::MODEL::where($fields)->first()){
             $model->update($fields);
-            return false;
+            return response()->json($fields,201);
         }
         return response()->json(self::MODEL::create($fields),201);
     }
