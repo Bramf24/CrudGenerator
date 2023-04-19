@@ -19,13 +19,13 @@ trait RestActions{
 
     public function create(Request $request): mixed{
         $this->validate($request,self::MODEL::$rules);
-        $fields = Arr::only($request->all(),array_keys(self::MODEL::$rules));
+        $fields = Arr::only($request->all(),array_keys(self::MODEL::$fillable));
+        if($request->filled('id')) $fields['id'] = $request->id;
         if($model = self::MODEL::where($fields)->first()){
             $model->update($fields);
-            return response()->json($fields,201);
+            return response()->json($model,201);
         }
-        self::MODEL::create($fields);
-        return response()->json($fields,201);
+        return response()->json(self::MODEL::create($fields),201);
     }
 
     public function update(Request $request, int $id): mixed{
