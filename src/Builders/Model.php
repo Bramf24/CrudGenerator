@@ -144,6 +144,7 @@ class Model{
      * Get model fields from migration
      */
     private function getModelFields(){
+        $this->foreign();
         foreach($this->schema as $schema){
             if(in_array($schema->column_name,self::MODEL_FIELD_EXCEPTIONS)) continue;
             $type = Schema::getColumnType($this->params['table_name'],$schema->column_name);
@@ -157,7 +158,6 @@ class Model{
             $this->buildRules($schema,$type);
             $this->validateRules($schema);
         }
-        $this->foreign();
     }
 
     /**
