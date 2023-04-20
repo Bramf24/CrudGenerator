@@ -62,6 +62,8 @@ class Model{
             'kcu.column_name','ccu.table_name AS foreign_table_name',
             'ccu.column_name AS foreign_column_name'
         ]);
+        // get table indexes
+        $this->indexes = Schema::getConnection()->getDoctrineSchemaManager()->listTableIndexes($this->params['table_name']);
         $this->fields = [];
         $this->buildParams['ParamTable'] = $this->params['table_name'];
         $this->buildParams['ParamModel'] = $this->params['model_name'];
@@ -126,6 +128,9 @@ class Model{
             $this->fields[$schema->column_name]['rules']['digits'] = 'digits:1';
         }
         $this->fields[$schema->column_name]['rules']['type'] = self::VALIDATION_TYPES[$type] ?? $type;
+        if(array_key_exists($this->params['table_name'].'_'.$schema->column_name.'_unique',$this->indexes)){
+            $this->fields[$schema->column_name]['rules']['unique'] = 'unique:'.$this->params['table_name'];
+        }
     }
 
     /**
