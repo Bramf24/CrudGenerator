@@ -131,12 +131,14 @@ class Model{
     /**
      * Cheking that generated rules are correct
      */
-    private function validateRules($schema){
-        if(
-            !empty($this->fields[$schema->column_name]['rules']['required']) &&
-            !empty($this->fields[$schema->column_name]['rules']['nullable'])
-        ){
-            unset($this->fields[$schema->column_name]['rules']['required']);
+    private function validateRules(){
+        foreach($this->fields as $column => $data){
+            if(
+                !empty($this->fields[$column]['rules']['required']) &&
+                !empty($this->fields[$column]['rules']['nullable'])
+            ){
+                unset($this->fields[$column]['rules']['required']);
+            }
         }
     }
 
@@ -144,7 +146,6 @@ class Model{
      * Get model fields from migration
      */
     private function getModelFields(){
-        $this->foreign();
         foreach($this->schema as $schema){
             if(in_array($schema->column_name,self::MODEL_FIELD_EXCEPTIONS)) continue;
             $type = Schema::getColumnType($this->params['table_name'],$schema->column_name);
@@ -156,8 +157,9 @@ class Model{
                 'rules' => []
             ];
             $this->buildRules($schema,$type);
-            $this->validateRules($schema);
         }
+        $this->foreign();
+        $this->validateRules();
     }
 
     /**
