@@ -129,6 +129,18 @@ class Model{
     }
 
     /**
+     * Cheking that generated rules are correct
+     */
+    private function validateRules($schema){
+        if(
+            !empty($this->fields[$schema->column_name]['rules']['required']) &&
+            !empty($this->fields[$schema->column_name]['rules']['nullable'])
+        ){
+            unset($this->fields[$schema->column_name]['rules']['required']);
+        }
+    }
+
+    /**
      * Get model fields from migration
      */
     private function getModelFields(){
@@ -143,6 +155,7 @@ class Model{
                 'rules' => []
             ];
             $this->buildRules($schema,$type);
+            $this->validateRules($schema);
         }
         $this->foreign();
     }
