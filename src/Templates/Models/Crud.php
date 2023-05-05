@@ -29,6 +29,8 @@ class ParamModel extends Model{
 
 #PROPERTIES
 
+#MUTATORS
+
     /**
         * The attributes that are mass assignable.
         *

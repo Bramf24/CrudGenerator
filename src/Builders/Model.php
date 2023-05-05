@@ -83,6 +83,7 @@ class Model{
         }
         $template = str_replace('#RULES',$this->generateRules(),$template);
         $template = str_replace('#PROPERTIES',$this->generateProperties(),$template);
+        $template = str_replace('#MUTATORS',$this->generateMutators(),$template);
         $template = str_replace('#FILLABLE',$this->fillable(array_keys($this->fields)),$template);
         if(!file_exists($this->modelCrudDir) && !is_dir($this->modelCrudDir)){
             mkdir($this->modelCrudDir);
@@ -185,6 +186,28 @@ class Model{
             $output[] = '       "'.$field['name'].'" => "'.implode("|",$field['rules']).'",';
         }
         return join("\n",$output);
+    }
+
+    /**
+     * generate mutator for model attribute
+     */
+    private function getMutatorTemplate($type,$attr){
+        if(!file_exists(base_path().'/vendor/bramf/crud-generator/src/Mutators/'.$type.'.mutator')) return false;
+        $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Mutators/'.$type.'.mutator');
+        $template = str_replace('ParamAttributeNameUpper',ucwords(str_replace('_','|',$attr),'|'),$template);
+        $template = str_replace('ParamAttributeName',$attr,$template);
+        return $template;
+    }
+
+    /**
+     * generate all mutators for model attributes
+     */
+    private function generateMutators(){
+        $output = [];
+        foreach($this->fields as $name => $attrs){
+            $output[] = $this->getMutatorTemplate($attrs['type'],$name);
+        }
+        return join("\n\n",$output);
     }
 
     /**
