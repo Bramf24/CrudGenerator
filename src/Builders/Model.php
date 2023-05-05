@@ -207,7 +207,7 @@ class Model{
         foreach($this->fields as $name => $attrs){
             $output[] = $this->getMutatorTemplate($attrs['type'],$name);
         }
-        return join("\n",array_values($output));
+        return trim(join("\n",array_values($output)));
     }
 
     /**
