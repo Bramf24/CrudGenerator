@@ -205,7 +205,7 @@ class Model{
     private function generateMutators(){
         $output = [];
         foreach($this->fields as $name => $attrs){
-            $output[] = $this->getMutatorTemplate($attrs['type'],$name);
+            $output[] = $this->getMutatorTemplate($attrs['type'],$name)."\n";
         }
         if(empty($output)) return '';
         return '    '.trim(join("\n",array_values($output)));
