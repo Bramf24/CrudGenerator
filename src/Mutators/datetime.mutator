@@ -1,3 +1,3 @@
 public function setParamAttributeNameUpperAttribute($value){
-    $this->attributes[ParamAttributeName] = (!empty($value) ? $value : null);
+    $this->attributes['ParamAttributeName'] = (!empty($value) ? $value : null);
 }

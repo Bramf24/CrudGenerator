@@ -194,7 +194,7 @@ class Model{
     private function getMutatorTemplate($type,$attr){
         if(!file_exists(base_path().'/vendor/bramf/crud-generator/src/Mutators/'.$type.'.mutator')) return false;
         $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Mutators/'.$type.'.mutator');
-        $template = str_replace('ParamAttributeNameUpper',ucwords(str_replace('_','|',$attr),'|'),$template);
+        $template = str_replace('ParamAttributeNameUpper',trim(ucwords(str_replace('_','|',$attr),'|'),'|'),$template);
         $template = str_replace('ParamAttributeName',$attr,$template);
         return $template;
     }
@@ -207,7 +207,7 @@ class Model{
         foreach($this->fields as $name => $attrs){
             $output[] = $this->getMutatorTemplate($attrs['type'],$name);
         }
-        return join("\n\n",$output);
+        return (!empty($output) ? join("\n",$output) : '');
     }
 
     /**
