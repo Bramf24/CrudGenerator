@@ -32,17 +32,17 @@ class UnitTest{
                 continue;
             }
             $output[] = match($data['type']){
-                'bigint' => '            "'.$name.'" => rand(1,9),',
+                'bigint' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
                 'boolean' => '            "'.$name.'" => true,',
-                'character' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
-                'character varying' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
-                'smallint' => '            "'.$name.'" => rand(1,9),',
-                'integer' => '            "'.$name.'" => rand(1,9),',
+                'character' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
+                'character varying' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
+                'smallint' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
+                'integer' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
                 'double precision' => '            "'.$name.'" => rand(0,9),',
-                'smallint' => '            "'.$name.'" => rand(1,9),',
-                'text' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
-                'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
-                'string' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
+                'smallint' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
+                'text' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
+                'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
+                'string' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
                 'timestamp' => '            "'.$name.'" => \Carbon\Carbon::now(),',
                 default => '            "'.$name.'" => null,'
             };

@@ -160,7 +160,8 @@ class Model{
                 'type' => $type,
                 'udt' => $schema->udt_name,
                 'foreign' => false,
-                'rules' => []
+                'rules' => [],
+                'maxlength' => $schema->character_maximum_length
             ];
             $this->buildRules($schema,$type);
         }

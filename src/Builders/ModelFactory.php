@@ -33,14 +33,14 @@ class ModelFactory{
                 continue;
             }
             $output[] = match($data['type']){
-                'bigint' => '            "'.$name.'" => $this->faker->randomDigit,',
+                'bigint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
                 'boolean' => '            "'.$name.'" => $this->faker->boolean,',
                 'character' => '            "'.$name.'" => $this->faker->word,',
                 'character varying' => '            "'.$name.'" => $this->faker->word,',
-                'smallint' => '            "'.$name.'" => $this->faker->randomDigit,',
-                'integer' => '            "'.$name.'" => $this->faker->randomDigit,',
-                'double precision' => '            "'.$name.'" => $this->faker->randomDigit,',
-                'smallint' => '            "'.$name.'" => $this->faker->randomDigit,',
+                'smallint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
+                'integer' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
+                'double precision' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
+                'smallint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
                 'text' => '            "'.$name.'" => $this->faker->word,',
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
                 'string' => '            "'.$name.'" => $this->faker->word,',
