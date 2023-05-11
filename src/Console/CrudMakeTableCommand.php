@@ -8,6 +8,7 @@ use Bramf\CrudGenerator\Builders\Router;
 use Bramf\CrudGenerator\Builders\Model;
 use Bramf\CrudGenerator\Builders\ModelFactory;
 use Bramf\CrudGenerator\Builders\UnitTest;
+use Illuminate\Support\Facades\Process;
 
 class CrudMakeTableCommand extends Command{
     const EXCEPTION_TABLES = [
@@ -97,6 +98,21 @@ class CrudMakeTableCommand extends Command{
     }
 
     /**
+     * run all generated tests
+     */
+    private function runTests(){
+        $process = new Process(['./vendor/bin/phpunit']);
+        $process->start();
+        foreach($process as $type => $data){
+            if($process::OUT !== $type){
+                $this->error($data);
+                continue;
+            }
+            $this->info($data);
+        }
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -106,5 +122,6 @@ class CrudMakeTableCommand extends Command{
         $this->input();
         $this->getTableNames();
         $this->crud();
+        $this->runTests();
     }
 }

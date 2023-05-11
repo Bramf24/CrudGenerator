@@ -75,6 +75,21 @@ class CrudMakeCommand extends Command
     }
 
     /**
+     * run generated test for current model
+     */
+    private function runTests(){
+        $process = new Process(['./vendor/bin/phpunit --filter '.$this->params['model_name'].'Test']);
+        $process->start();
+        foreach($process as $type => $data){
+            if($process::OUT !== $type){
+                $this->error($data);
+                continue;
+            }
+            $this->info($data);
+        }
+    }
+
+    /**
      * Execute the console command.
      *
      * @return mixed
@@ -89,6 +104,7 @@ class CrudMakeCommand extends Command
         (new Model($this->params))->build();
         (new ModelFactory($this->params))->build();
         (new UnitTest($this->params))->build();
+        $this->runTests();
         $this->call('make:swagger');
         $this->info('OpenApi annotations created successfully');
     }
