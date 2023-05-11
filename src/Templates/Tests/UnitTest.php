@@ -16,7 +16,7 @@ class ParamModelTest extends TestCase
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ],[
-            'Authorization' => 'Bearer '.test_token()
+            ParamAuthHeader
         ]);
         $this->seeStatusCode(201);
         $this->seeJsonStructure([
