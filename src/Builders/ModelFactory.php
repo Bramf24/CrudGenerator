@@ -2,6 +2,7 @@
 
 use Bramf\CrudGenerator\Builders\Model;
 use Faker\Factory as Faker;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ModelFactory{
     public function __construct(
@@ -9,6 +10,7 @@ class ModelFactory{
     ){
         $this->modelFields = (new Model($this->params))->getFields();
         $this->faker = Faker::create();
+        $this->output = new ConsoleOutput();
     }
 
     /**
