@@ -8,6 +8,7 @@ use Bramf\CrudGenerator\Builders\Controller;
 use Bramf\CrudGenerator\Builders\Router;
 use Bramf\CrudGenerator\Builders\Model;
 use Bramf\CrudGenerator\Builders\ModelFactory;
+use Bramf\CrudGenerator\Builders\UnitTest;
 
 class CrudMakeCommand extends Command
 {
@@ -87,6 +88,7 @@ class CrudMakeCommand extends Command
         (new Router($this->params))->build();
         (new Model($this->params))->build();
         (new ModelFactory($this->params))->build();
+        (new UnitTest($this->params))->build();
         $this->call('make:swagger');
         $this->info('OpenApi annotations created successfully');
     }

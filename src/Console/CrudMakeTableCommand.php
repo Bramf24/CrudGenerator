@@ -7,6 +7,7 @@ use Bramf\CrudGenerator\Builders\Controller;
 use Bramf\CrudGenerator\Builders\Router;
 use Bramf\CrudGenerator\Builders\Model;
 use Bramf\CrudGenerator\Builders\ModelFactory;
+use Bramf\CrudGenerator\Builders\UnitTest;
 
 class CrudMakeTableCommand extends Command{
     const EXCEPTION_TABLES = [
@@ -66,6 +67,7 @@ class CrudMakeTableCommand extends Command{
             (new Router($params))->build();
             (new Model($params))->build();
             (new ModelFactory($params))->build();
+            (new UnitTest($params))->build();
         }
         $this->call('make:swagger');
         $this->info('OpenApi annotations created successfully');
