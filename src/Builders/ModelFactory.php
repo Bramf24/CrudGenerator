@@ -30,7 +30,7 @@ class ModelFactory{
                 'smallint' => '            "'.$name.'" => $this->faker->randomDigit,',
                 'text' => '            "'.$name.'" => $this->faker->word,',
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
-                default => '            "'.$name.'" => null,'
+                default => '            "'.$name.'" => "'.$data['type'].'",'
             };
         }
         return join("\n",$output);
