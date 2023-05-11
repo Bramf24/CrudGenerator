@@ -16,7 +16,7 @@ class ParamModelTest extends TestCase
         ]);
         $this->seeStatusCode(201);
         $this->seeJsonStructure([
-            'id','status','exception','file'
+            ParamResponseFields
         ]);
     }
 
@@ -29,7 +29,7 @@ class ParamModelTest extends TestCase
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
-            ['id','status','exception','file']
+            [ParamResponseFields]
         ]);
     }
 
@@ -43,7 +43,7 @@ class ParamModelTest extends TestCase
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
-            'id','status','exception','file'
+            ParamResponseFields
         ]);
     }
 
@@ -59,7 +59,7 @@ class ParamModelTest extends TestCase
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
-            'id','status','exception','file'
+            ParamResponseFields
         ]);
     }
 

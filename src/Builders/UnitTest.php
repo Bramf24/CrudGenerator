@@ -42,6 +42,7 @@ class UnitTest{
         $this->buildParams['ParamTableName'] = $this->params['table_name'];
         $this->buildParams['ParamAuthHeader'] = '';
         if(!empty(env('JWT_SECRET'))) $this->buildParams['ParamAuthHeader'] = '"Authorization" => "Bearer ".test_token()';
+        $this->buildParams['ParamResponseFields'] = '"'.implode('","',array_keys($this->modelFields)).'"';
         $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Tests/UnitTest.php');
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
