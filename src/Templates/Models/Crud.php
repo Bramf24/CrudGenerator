@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use \Awobaz\Compoships\Compoships;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
     * Class ParamModel
@@ -16,7 +17,7 @@ use \Awobaz\Compoships\Compoships;
     * )
 */
 class ParamModel extends Model{
-    use Compoships;
+    use Compoships, HasFactory;
 
     protected $table = "ParamTable";
 

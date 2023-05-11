@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Bramf\CrudGenerator\Builders\Controller;
 use Bramf\CrudGenerator\Builders\Router;
 use Bramf\CrudGenerator\Builders\Model;
+use Bramf\CrudGenerator\Builders\ModelFactory;
 
 class CrudMakeCommand extends Command
 {
@@ -85,6 +86,7 @@ class CrudMakeCommand extends Command
         (new Controller($this->params))->build();
         (new Router($this->params))->build();
         (new Model($this->params))->build();
+        (new ModelFactory($this->params))->build();
         $this->call('make:swagger');
         $this->info('OpenApi annotations created successfully');
     }
