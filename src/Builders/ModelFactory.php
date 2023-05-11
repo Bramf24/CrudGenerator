@@ -30,6 +30,7 @@ class ModelFactory{
                 'smallint' => '            "'.$name.'" => $this->faker->randomDigit,',
                 'text' => '            "'.$name.'" => $this->faker->word,',
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
+                'string' => '            "'.$name.'" => $this->faker->word,',
                 default => '            "'.$name.'" => "'.$data['type'].'",'
             };
         }
