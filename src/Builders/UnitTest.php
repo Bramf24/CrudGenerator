@@ -32,17 +32,17 @@ class UnitTest{
                 continue;
             }
             $output[] = match($data['type']){
-                'bigint' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
+                'bigint' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
                 'boolean' => '            "'.$name.'" => true,',
-                'character' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
-                'character varying' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
-                'smallint' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
-                'integer' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
+                'character' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
+                'character varying' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
+                'smallint' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
+                'integer' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
                 'double precision' => '            "'.$name.'" => rand(0,9),',
-                'smallint' => '            "'.$name.'" => rand(1,'.$data['maxlength'].'),',
-                'text' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
-                'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
-                'string' => '            "'.$name.'" => \Illuminate\Support\Str::random('.$data['maxlength'].'),',
+                'smallint' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
+                'text' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
+                'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
+                'string' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
                 'timestamp' => '            "'.$name.'" => \Carbon\Carbon::now(),',
                 default => '            "'.$name.'" => null,'
             };

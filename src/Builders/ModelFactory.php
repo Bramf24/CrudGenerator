@@ -33,14 +33,14 @@ class ModelFactory{
                 continue;
             }
             $output[] = match($data['type']){
-                'bigint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
+                'bigint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
                 'boolean' => '            "'.$name.'" => $this->faker->boolean,',
                 'character' => '            "'.$name.'" => $this->faker->word,',
                 'character varying' => '            "'.$name.'" => $this->faker->word,',
-                'smallint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
-                'integer' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
-                'double precision' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
-                'smallint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.$data['maxlength'].'),',
+                'smallint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
+                'integer' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
+                'double precision' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
+                'smallint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
                 'text' => '            "'.$name.'" => $this->faker->word,',
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
                 'string' => '            "'.$name.'" => $this->faker->word,',
