@@ -3,6 +3,7 @@
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Illuminate\Support\Str;
 use Bramf\CrudGenerator\Builders\Model;
+use Illuminate\Support\Facades\DB;
 
 class UnitTest{
     public function __construct(
@@ -11,10 +12,25 @@ class UnitTest{
         $this->output = new ConsoleOutput();
         $this->modelFields = (new Model($this->params))->getFields();
     }
+    
+    /**
+     * generate fake data for request (column with foreign key)
+     */
+    private function generateRequestDataForeign($columnData){
+        $foreignModel = DB::table($columnData['foreign_table'])->first();
+        return '            "'.$name.'" => '.$foreignModel->id.',';
+    }
 
+    /**
+     * generate fake data for request
+     */
     private function generateRequestData(){
         $output = [];
         foreach($this->modelFields as $name => $data){
+            if($data['foreign']){
+                $output[] = $this->generateRequestDataForeign($data);
+                continue;
+            }
             $output[] = match($data['type']){
                 'bigint' => '            "'.$name.'" => rand(1,9),',
                 'boolean' => '            "'.$name.'" => true,',
