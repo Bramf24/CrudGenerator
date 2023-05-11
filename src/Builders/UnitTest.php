@@ -1,6 +1,7 @@
 <?php namespace Bramf\CrudGenerator\Builders;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Illuminate\Support\Str;
 
 class UnitTest{
     public function __construct(
@@ -11,8 +12,10 @@ class UnitTest{
 
     public function build(){
         $this->buildParams['ParamModel'] = $this->params['model_name'];
-        $this->buildParams['ParamUrl'] = '/api/'.str_replace('_','/',$this->params['table_name']);
-        $this->buildParams['ParamUrlId'] = '/api/'.str_replace('_','/',$this->params['table_name']).'/id';
+        $this->buildParams['ParamUrl'] = '/api/'.str_replace('_','/',Str::singular($this->params['table_name']));
+        $this->buildParams['ParamUrlId'] = '/api/'.str_replace('_','/',Str::singular($this->params['table_name'])).'/id';
+        $this->buildParams['ParamTableName'] = $this->params['table_name'];
+        $this->buildParams['ParamTableNameSingle'] = Str::singular($this->params['table_name']);
         $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Tests/UnitTest.php');
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
