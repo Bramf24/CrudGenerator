@@ -29,7 +29,7 @@ class ParamModelTest extends TestCase
      */
     public function test_get_all_ParamTableName(){
         $this->get('ParamUrl',[
-            'Authorization' => 'Bearer '.test_token()
+            ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
@@ -43,7 +43,7 @@ class ParamModelTest extends TestCase
     public function test_get_single_ParamTableNameSingle(){
         $errorLog = \App\Models\ErrorLog::factory()->create();
         $this->get('ParamUrl/'.$errorLog->id,[
-            'Authorization' => 'Bearer '.test_token()
+            ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
@@ -63,7 +63,7 @@ class ParamModelTest extends TestCase
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ],[
-            'Authorization' => 'Bearer '.test_token()
+            ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
@@ -77,7 +77,7 @@ class ParamModelTest extends TestCase
     public function test_delete_ParamTableNameSingle(){
         $errorLog = \App\Models\ErrorLog::factory()->create();
         $this->delete('ParamUrl/'.$errorLog->id,[],[
-            'Authorization' => 'Bearer '.test_token()
+            ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
     }
