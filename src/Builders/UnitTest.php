@@ -2,12 +2,36 @@
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Illuminate\Support\Str;
+use Bramf\CrudGenerator\Builders\Model;
 
 class UnitTest{
     public function __construct(
         private array $params
     ){
         $this->output = new ConsoleOutput();
+        $this->modelFields = (new Model($this->params))->getFields();
+    }
+
+    private function generateRequestData(){
+        $output = [];
+        foreach($this->modelFields as $name => $data){
+            $output[] = match($data['type']){
+                'bigint' => '            "'.$name.'" => rand(0,9),',
+                'boolean' => '            "'.$name.'" => true,',
+                'character' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
+                'character varying' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
+                'smallint' => '            "'.$name.'" => rand(0,9),',
+                'integer' => '            "'.$name.'" => rand(0,9),',
+                'double precision' => '            "'.$name.'" => rand(0,9),',
+                'smallint' => '            "'.$name.'" => rand(0,9),',
+                'text' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
+                'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
+                'string' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
+                'timestamp' => '            "'.$name.'" => \Carbon\Carbon::now(),',
+                default => '            "'.$name.'" => null,'
+            };
+        }
+        return join("\n",$output);
     }
 
     public function build(){
@@ -22,6 +46,7 @@ class UnitTest{
         foreach($this->buildParams as $param => $value){
             $template = str_replace($param,$value,$template);
         }
+        $template = str_replace('#ParamRequest',$this->generateRequestData(),$template);
         file_put_contents(base_path().'/tests/'.$this->buildParams['ParamModel'].'Test.php',$template);
         $this->output->writeln('<info>Test '.$this->buildParams['ParamModel'].' created successfully</info>');
     }

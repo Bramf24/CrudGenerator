@@ -10,11 +10,7 @@ class ParamModelTest extends TestCase
      */
     public function test_create_ParamTableNameSingle(){
         $this->post('ParamUrl',[
-            'status' => rand(0,9),
-            'exception' => \Illuminate\Support\Str::random(20),
-            'file' => \Illuminate\Support\Str::random(20),
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
+#ParamRequest
         ],[
             ParamAuthHeader
         ]);

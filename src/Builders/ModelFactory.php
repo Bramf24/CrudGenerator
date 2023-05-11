@@ -31,7 +31,8 @@ class ModelFactory{
                 'text' => '            "'.$name.'" => $this->faker->word,',
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
                 'string' => '            "'.$name.'" => $this->faker->word,',
-                default => '            "'.$name.'" => "'.$data['type'].'",'
+                'timestamp' => '            "'.$name.'" => $this->faker->dateTime(),',
+                default => '            "'.$name.'" => null,'
             };
         }
         return join("\n",$output);
