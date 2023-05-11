@@ -1,12 +1,14 @@
 <?php namespace Bramf\CrudGenerator\Builders;
 
 use Bramf\CrudGenerator\Builders\Model;
+use Faker\Generator as Faker;
 
 class ModelFactory{
     public function __construct(
         private array $params
     ){
         $this->modelFields = (new Model($this->params))->getFields();
+        $this->faker = new Faker;
     }
 
     /**
