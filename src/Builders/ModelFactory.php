@@ -3,6 +3,7 @@
 use Bramf\CrudGenerator\Builders\Model;
 use Faker\Factory as Faker;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Illuminate\Support\Facades\DB;
 
 class ModelFactory{
     public function __construct(
@@ -14,11 +15,23 @@ class ModelFactory{
     }
 
     /**
+     * generate data of foreign column for definitions method of model's factory
+     */
+    private function generateDefinitionsForeign($columnData){
+        $foreignModel = DB::table($columnData['foreign_table'])->first();
+        return '            "'.$columnData['name'].'" => '.$foreignModel->id.',';
+    }
+
+    /**
      * generate data for definitions method of model's factory
      */
     private function generateDefinitions(){
         $output = [];
         foreach($this->modelFields as $name => $data){
+            if($data['foreign']){
+                $output[] = $this->generateDefinitionsForeign($data);
+                continue;
+            }
             $output[] = match($data['type']){
                 'bigint' => '            "'.$name.'" => $this->faker->randomDigit,',
                 'boolean' => '            "'.$name.'" => $this->faker->boolean,',
