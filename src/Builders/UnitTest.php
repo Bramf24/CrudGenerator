@@ -16,14 +16,14 @@ class UnitTest{
         $output = [];
         foreach($this->modelFields as $name => $data){
             $output[] = match($data['type']){
-                'bigint' => '            "'.$name.'" => rand(0,9),',
+                'bigint' => '            "'.$name.'" => rand(1,9),',
                 'boolean' => '            "'.$name.'" => true,',
                 'character' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
                 'character varying' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
-                'smallint' => '            "'.$name.'" => rand(0,9),',
-                'integer' => '            "'.$name.'" => rand(0,9),',
+                'smallint' => '            "'.$name.'" => rand(1,9),',
+                'integer' => '            "'.$name.'" => rand(1,9),',
                 'double precision' => '            "'.$name.'" => rand(0,9),',
-                'smallint' => '            "'.$name.'" => rand(0,9),',
+                'smallint' => '            "'.$name.'" => rand(1,9),',
                 'text' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
                 'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',
                 'string' => '            "'.$name.'" => \Illuminate\Support\Str::random(20),',

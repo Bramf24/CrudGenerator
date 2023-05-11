@@ -37,8 +37,8 @@ class ParamModelTest extends TestCase
      * ParamUrlId [GET]
      */
     public function test_get_single_ParamTableNameSingle(){
-        $errorLog = \App\Models\ErrorLog::factory()->create();
-        $this->get('ParamUrl/'.$errorLog->id,[
+        $model = \App\Models\ParamModel::factory()->create();
+        $this->get('ParamUrl/'.$model->id,[
             ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
@@ -51,13 +51,9 @@ class ParamModelTest extends TestCase
      * ParamUrlId [PUT]
      */
     public function test_update_ParamTableNameSingle(){
-        $errorLog = \App\Models\ErrorLog::factory()->create();
-        $this->put('ParamUrl/'.$errorLog->id,[
-            'status' => rand(0,9),
-            'exception' => \Illuminate\Support\Str::random(20),
-            'file' => \Illuminate\Support\Str::random(20),
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
+        $model = \App\Models\ParamModel::factory()->create();
+        $this->put('ParamUrl/'.$model->id,[
+#ParamRequest
         ],[
             ParamAuthHeader
         ]);
@@ -71,8 +67,8 @@ class ParamModelTest extends TestCase
      * ParamUrlId [DELETE]
      */
     public function test_delete_ParamTableNameSingle(){
-        $errorLog = \App\Models\ErrorLog::factory()->create();
-        $this->delete('ParamUrl/'.$errorLog->id,[],[
+        $model = \App\Models\ParamModel::factory()->create();
+        $this->delete('ParamUrl/'.$model->id,[],[
             ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
