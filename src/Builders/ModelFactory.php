@@ -20,9 +20,9 @@ class ModelFactory{
         $output = [];
         foreach($this->modelFields as $name => $data){
             $output[] = match($data['type']){
-                'character' => '       "'.$name.'" => $this->faker->word,',
-                'character varying' => '       "'.$name.'" => $this->faker->word,',
-                default => '       "'.$name.'" => $this->faker->word,'
+                'character' => '        "'.$name.'" => $this->faker->word,',
+                'character varying' => '        "'.$name.'" => $this->faker->word,',
+                default => '        "'.$name.'" => $this->faker->word,'
             };
         }
         return join("\n",$output);
