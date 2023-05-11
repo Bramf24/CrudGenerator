@@ -12,7 +12,7 @@ use Symfony\Component\Process\Process;
 
 class CrudMakeTableCommand extends Command{
     const EXCEPTION_TABLES = [
-        'users','crud_route_groups','migrations'
+        'users','crud_route_groups','migrations','config_services'
     ];
 
     /**
