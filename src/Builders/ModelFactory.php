@@ -17,15 +17,15 @@ class ModelFactory{
      * generate data for definitions method of model's factory
      */
     private function generateDefinitions(){
-        $definitions = [];
+        $output = [];
         foreach($this->modelFields as $name => $data){
-            $definitions[$name] = match($data['type']){
-                'character' => $this->faker->word,
-                'character varying' => $this->faker->word,
-                default => $this->faker->word
+            $output[] = match($data['type']){
+                'character' => '       "'.$name.'" => $this->faker->word,',
+                'character varying' => '       "'.$name.'" => $this->faker->word,',
+                default => '       "'.$name.'" => $this->faker->word,'
             };
         }
-        return join(",",$definitions);
+        return join("\n",$output);
     }
 
     public function build(){
