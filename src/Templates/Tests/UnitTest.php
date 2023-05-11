@@ -6,10 +6,10 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 class ParamModelTest extends TestCase
 {
     /**
-     * ParamPostUrl [POST]
+     * ParamUrl [POST]
      */
     public function test_create_error_log(){
-        $this->post('api/error/log',[
+        $this->post('ParamUrl',[
             'status' => rand(0,9),
             'exception' => \Illuminate\Support\Str::random(20),
             'file' => \Illuminate\Support\Str::random(20),
@@ -25,10 +25,10 @@ class ParamModelTest extends TestCase
     }
 
     /**
-     * ParamGetAllUrl [GET]
+     * ParamUrl [GET]
      */
     public function test_get_all_error_logs(){
-        $this->get('api/error/log',[
+        $this->get('ParamUrl',[
             'Authorization' => 'Bearer '.test_token()
         ]);
         $this->seeStatusCode(200);
@@ -38,11 +38,11 @@ class ParamModelTest extends TestCase
     }
 
     /**
-     * ParamGetUrl [GET]
+     * ParamUrlId [GET]
      */
     public function test_get_single_error_log(){
         $errorLog = \App\Models\ErrorLog::factory()->create();
-        $this->get('api/error/log/'.$errorLog->id,[
+        $this->get('ParamUrl/'.$errorLog->id,[
             'Authorization' => 'Bearer '.test_token()
         ]);
         $this->seeStatusCode(200);
@@ -52,11 +52,11 @@ class ParamModelTest extends TestCase
     }
 
     /**
-     * ParamUpdateUrl [PUT]
+     * ParamUrlId [PUT]
      */
     public function test_update_error_log(){
         $errorLog = \App\Models\ErrorLog::factory()->create();
-        $this->put('api/error/log/'.$errorLog->id,[
+        $this->put('ParamUrl/'.$errorLog->id,[
             'status' => rand(0,9),
             'exception' => \Illuminate\Support\Str::random(20),
             'file' => \Illuminate\Support\Str::random(20),
@@ -72,11 +72,11 @@ class ParamModelTest extends TestCase
     }
 
     /**
-     * ParamDeleteUrl [DELETE]
+     * ParamUrlId [DELETE]
      */
     public function test_delete_error_log(){
         $errorLog = \App\Models\ErrorLog::factory()->create();
-        $this->delete('api/error/log/'.$errorLog->id,[],[
+        $this->delete('ParamUrl/'.$errorLog->id,[],[
             'Authorization' => 'Bearer '.test_token()
         ]);
         $this->seeStatusCode(200);
