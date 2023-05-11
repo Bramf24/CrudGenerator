@@ -19,7 +19,7 @@ class UnitTest{
     private function generateRequestDataForeign($columnData){
         $foreignModel = DB::table($columnData['foreign_table'])->first();
         return '            "'.$name.'" => '.$foreignModel->id.',';
-    }
+    } 
 
     /**
      * generate fake data for request
