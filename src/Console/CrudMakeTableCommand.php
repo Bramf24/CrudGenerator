@@ -8,7 +8,7 @@ use Bramf\CrudGenerator\Builders\Router;
 use Bramf\CrudGenerator\Builders\Model;
 use Bramf\CrudGenerator\Builders\ModelFactory;
 use Bramf\CrudGenerator\Builders\UnitTest;
-use Illuminate\Support\Facades\Process;
+use Symfony\Component\Process\Process;
 
 class CrudMakeTableCommand extends Command{
     const EXCEPTION_TABLES = [
