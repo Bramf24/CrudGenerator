@@ -19,7 +19,7 @@ class ModelFactory{
      */
     private function generateDefinitionsForeign($columnData){
         $foreignModel = DB::table($columnData['foreign_table'])->first();
-        return '            "'.$columnData['name'].'" => '.$foreignModel->id.',';
+        return '            "'.$columnData['name'].'" => '.($foreignModel->id ?? 1).',';
     } 
 
     /**
