@@ -26,6 +26,7 @@ class ParamModelTest extends TestCase
      * ParamUrl [GET]
      */
     public function test_get_all_ParamTableName(){
+        $model = \App\Models\ParamModel::factory()->create();
         $this->get('ParamUrl',[
             ParamAuthHeader
         ]);
