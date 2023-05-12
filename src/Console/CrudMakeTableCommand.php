@@ -108,7 +108,7 @@ class CrudMakeTableCommand extends Command{
                 $this->error($data);
                 continue;
             }
-            $this->info($data);
+            echo $data;
         }
     }
 
