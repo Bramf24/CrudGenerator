@@ -161,8 +161,9 @@ class Model{
                 'udt' => $schema->udt_name,
                 'foreign' => false,
                 'rules' => [],
-                'maxlength' => $schema->character_maximum_length ?? (int)$schema->column_default
+                'maxlength' => $schema->character_maximum_length
             ];
+            if($type == 'smallint') $this->fields[$schema->column_name]['maxlength'] = 1;
             $this->buildRules($schema,$type);
         }
         $this->foreign();
