@@ -1,10 +1,11 @@
 <?php namespace Tests;
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ParamModelTest extends TestCase
 {
+    use DatabaseTransactions;
+
     /**
      * ParamUrl [POST]
      */
@@ -18,7 +19,6 @@ class ParamModelTest extends TestCase
         $this->seeJsonStructure([
             ParamResponseFields
         ]);
-        \App\Models\ParamModel::find($response->id)->delete();
     }
 
     /**
@@ -46,7 +46,6 @@ class ParamModelTest extends TestCase
         $this->seeJsonStructure([
             ParamResponseFields
         ]);
-        \App\Models\ParamModel::find($model->id)->delete();
     }
 
     /**
@@ -63,7 +62,6 @@ class ParamModelTest extends TestCase
         $this->seeJsonStructure([
             ParamResponseFields
         ]);
-        \App\Models\ParamModel::find($model->id)->delete();
     }
 
     /**
