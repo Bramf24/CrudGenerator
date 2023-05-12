@@ -9,7 +9,7 @@ class ParamModelTest extends TestCase
      * ParamUrl [POST]
      */
     public function test_create_ParamTableNameSingle(){
-        $this->post('ParamUrl',[
+        $response = $this->post('ParamUrl',[
 #ParamRequest
         ],[
             ParamAuthHeader
@@ -18,6 +18,7 @@ class ParamModelTest extends TestCase
         $this->seeJsonStructure([
             ParamResponseFields
         ]);
+        \App\Models\ParamModel::find($response->id)->delete();
     }
 
     /**
@@ -45,6 +46,7 @@ class ParamModelTest extends TestCase
         $this->seeJsonStructure([
             ParamResponseFields
         ]);
+        \App\Models\ParamModel::find($model->id)->delete();
     }
 
     /**
@@ -61,6 +63,7 @@ class ParamModelTest extends TestCase
         $this->seeJsonStructure([
             ParamResponseFields
         ]);
+        \App\Models\ParamModel::find($model->id)->delete();
     }
 
     /**
