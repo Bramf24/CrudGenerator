@@ -55,7 +55,7 @@ class ParamController extends Controller{
         *   operationId="ParamModelLowercreate",
 #OARequest
         *   @OA\Response(
-        *     response=200, 
+        *     response=201, 
         *     description="ParamModelSnake object",
         *     @OA\JsonContent(
         *       type="array",
