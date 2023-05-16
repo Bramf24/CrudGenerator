@@ -32,6 +32,10 @@ class ModelFactory{
                 $output[] = $this->generateDefinitionsForeign($data);
                 continue;
             }
+            if($data['is_nullable'] == 'YES'){
+                $output[] = '            "'.$name.'" => null,';
+                continue;
+            }
             $output[] = match($data['type']){
                 'bigint' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
                 'boolean' => '            "'.$name.'" => $this->faker->boolean,',
@@ -45,8 +49,8 @@ class ModelFactory{
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
                 'string' => '            "'.$name.'" => $this->faker->word,',
                 'timestamp' => '            "'.$name.'" => $this->faker->dateTime(),',
-                'datetime' => '            "'.$name.'" => \Carbon\Carbon::now(),',
-                'float' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
+                'datetime' => '            "'.$name.'" => $this->faker->dateTime(),',
+                'float' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
                 default => '            "'.$name.'" => null,'
             };
         }

@@ -31,6 +31,10 @@ class UnitTest{
                 $output[] = $this->generateRequestDataForeign($data);
                 continue;
             }
+            if($data['is_nullable'] == 'YES'){
+                $output[] = '            "'.$name.'" => null,';
+                continue;
+            }
             $output[] = match($data['type']){
                 'bigint' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
                 'boolean' => '            "'.$name.'" => true,',
