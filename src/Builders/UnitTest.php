@@ -44,8 +44,9 @@ class UnitTest{
                 'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
                 'string' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
                 'timestamp' => '            "'.$name.'" => \Carbon\Carbon::now(),',
-                'float8' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
-                default => '            "'.$name.'" => null,'.$data['type']
+                'datetime' => '            "'.$name.'" => \Carbon\Carbon::now(),',
+                'float' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
+                default => '            "'.$name.'" => null,'
             };
         }
         return join("\n",$output);
