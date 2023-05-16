@@ -26,7 +26,8 @@ class Model{
         'double precision' => 'numeric',
         'smallint' => 'integer',
         'text' => 'string',
-        'uuid' => 'string'
+        'uuid' => 'string',
+        'float' => 'numeric'
     ];
 
     public function __construct(
