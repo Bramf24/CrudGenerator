@@ -76,4 +76,12 @@ class ParamModelTest extends TestCase
         ]);
         $this->seeStatusCode(200);
     }
+
+    private function token(){
+        $response = \Illuminate\Support\Facades\Http::post(env('JWT_AUTH_URL'),[
+            'login' => env('JWT_AUTH_USER'),
+            'password' => env('JWT_AUTH_PASSWORD')
+        ]);
+        return $response->json('access_token') ?? '';
+    }
 }

@@ -44,6 +44,7 @@ class UnitTest{
                 'uuid' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
                 'string' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
                 'timestamp' => '            "'.$name.'" => \Carbon\Carbon::now(),',
+                'float8' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
                 default => '            "'.$name.'" => null,'
             };
         }
@@ -57,7 +58,7 @@ class UnitTest{
         $this->buildParams['ParamTableNameSingle'] = Str::singular($this->params['table_name']);
         $this->buildParams['ParamTableName'] = $this->params['table_name'];
         $this->buildParams['ParamAuthHeader'] = '';
-        if(!empty(env('JWT_SECRET'))) $this->buildParams['ParamAuthHeader'] = '"Authorization" => "Bearer ".test_token()';
+        if(!empty(env('JWT_SECRET'))) $this->buildParams['ParamAuthHeader'] = '"Authorization" => "Bearer ".$this->token()';
         $this->buildParams['ParamResponseFields'] = '"'.implode('","',array_keys($this->modelFields)).'"';
         $template = file_get_contents(base_path().'/vendor/bramf/crud-generator/src/Templates/Tests/UnitTest.php');
         foreach($this->buildParams as $param => $value){
