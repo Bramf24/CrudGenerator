@@ -32,7 +32,7 @@ class ModelFactory{
                 $output[] = $this->generateDefinitionsForeign($data);
                 continue;
             }
-            if($data['is_nullable'] == 'YES'){
+            if($data['nullable'] == 'YES'){
                 $output[] = '            "'.$name.'" => null,';
                 continue;
             }
