@@ -45,6 +45,8 @@ class ModelFactory{
                 'uuid' => '            "'.$name.'" => $this->faker->word,',
                 'string' => '            "'.$name.'" => $this->faker->word,',
                 'timestamp' => '            "'.$name.'" => $this->faker->dateTime(),',
+                'datetime' => '            "'.$name.'" => \Carbon\Carbon::now(),',
+                'float' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
                 default => '            "'.$name.'" => null,'
             };
         }
