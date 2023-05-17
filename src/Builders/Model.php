@@ -27,7 +27,8 @@ class Model{
         'smallint' => 'integer',
         'text' => 'string',
         'uuid' => 'string',
-        'float' => 'numeric'
+        'float' => 'numeric',
+        'datetime' => 'date_format:Y-m-d H:i:s'
     ];
 
     public function __construct(
