@@ -20,7 +20,7 @@ class CrudMakeTableCommand extends Command{
      *
      * @var string
      */
-    protected $signature = 'make:crud:table';
+    protected $signature = 'make:crud:table {--s}';
 
     /**
      * The console command description.
@@ -93,6 +93,7 @@ class CrudMakeTableCommand extends Command{
      * Asking user for set parameters
      */
     private function input(){
+        if($this->option('s')) return false;
         $this->info('Set table names, that be excluded from CRUD generation');
         $this->params['exceptions'] = $this->ask('Excluded table names');
     }
