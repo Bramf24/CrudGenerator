@@ -105,6 +105,7 @@ class CrudMakeTableCommand extends Command{
      * run all generated tests
      */
     private function runTests(){
+        if($this->option('s')) return false;
         $process = new Process(['./vendor/bin/phpunit']);
         $process->start();
         foreach($process as $type => $data){
