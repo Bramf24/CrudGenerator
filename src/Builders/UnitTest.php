@@ -70,7 +70,10 @@ class UnitTest{
             $template = str_replace($param,$value,$template);
         }
         $template = str_replace('#ParamRequest',$this->generateRequestData(),$template);
-        file_put_contents(base_path().'/tests/'.$this->buildParams['ParamModel'].'Test.php',$template);
+        if(!file_exists(base_path().'/tests/Crud/')){
+            mkdir(base_path().'/tests/Crud',0755,true);
+        }
+        file_put_contents(base_path().'/tests/Crud/'.$this->buildParams['ParamModel'].'Test.php',$template);
         $this->output->writeln('<info>Test '.$this->buildParams['ParamModel'].' created successfully</info>');
     }
 }
