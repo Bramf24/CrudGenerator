@@ -106,7 +106,7 @@ class CrudMakeTableCommand extends Command{
      */
     private function runTests(){
         if($this->option('s')) return false;
-        $process = new Process(['./vendor/bin/phpunit --exclude-group skip-test']);
+        $process = new Process(['./vendor/bin/phpunit','--exclude-group','skip-test']);
         $process->start();
         foreach($process as $type => $data){
             if($process::OUT !== $type){
