@@ -1,4 +1,4 @@
-<?php namespace Tests;
+<?php namespace Tests\Crud;
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
