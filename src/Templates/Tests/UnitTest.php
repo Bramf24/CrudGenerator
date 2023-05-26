@@ -2,20 +2,21 @@
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use Laravel\Lumen\Testing\WithoutMiddleware;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Event;
 
 class ParamModelTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseTransactions, WithoutMiddleware;
 
     /**
      * ParamUrl [POST]
      */
     public function test_create_ParamTableNameSingle(){
-        $response = $this->post('ParamUrl',[
+        Event::fake();
+        $this->post('ParamUrl',[
 #ParamRequest
-        ],[
-            ParamAuthHeader
         ]);
         $this->seeStatusCode(201);
         $this->seeJsonStructure([
@@ -27,10 +28,9 @@ class ParamModelTest extends TestCase
      * ParamUrl [GET]
      */
     public function test_get_all_ParamTableName(){
+        Event::fake();
         $model = \App\Models\ParamModel::factory()->create();
-        $this->get('ParamUrl',[
-            ParamAuthHeader
-        ]);
+        $this->get('ParamUrl');
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
             [ParamResponseFields]
@@ -41,10 +41,9 @@ class ParamModelTest extends TestCase
      * ParamUrlId [GET]
      */
     public function test_get_single_ParamTableNameSingle(){
+        Event::fake();
         $model = \App\Models\ParamModel::factory()->create();
-        $this->get('ParamUrl/'.$model->id,[
-            ParamAuthHeader
-        ]);
+        $this->get('ParamUrl/'.$model->id);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
             ParamResponseFields
@@ -55,11 +54,10 @@ class ParamModelTest extends TestCase
      * ParamUrlId [PUT]
      */
     public function test_update_ParamTableNameSingle(){
+        Event::fake();
         $model = \App\Models\ParamModel::factory()->create();
         $this->put('ParamUrl/'.$model->id,[
 #ParamRequest
-        ],[
-            ParamAuthHeader
         ]);
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
@@ -71,18 +69,9 @@ class ParamModelTest extends TestCase
      * ParamUrlId [DELETE]
      */
     public function test_delete_ParamTableNameSingle(){
+        Event::fake();
         $model = \App\Models\ParamModel::factory()->create();
-        $this->delete('ParamUrl/'.$model->id,[],[
-            ParamAuthHeader
-        ]);
+        $this->delete('ParamUrl/'.$model->id);
         $this->seeStatusCode(200);
-    }
-
-    private function token(){
-        $response = \Illuminate\Support\Facades\Http::post(env('JWT_AUTH_URL'),[
-            'login' => env('JWT_AUTH_USER'),
-            'password' => env('JWT_AUTH_PASSWORD')
-        ]);
-        return $response->json('access_token') ?? '';
     }
 }
