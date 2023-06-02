@@ -114,7 +114,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
             fclose($file);
         }
         $groupOptions = ['namespace' => 'App\Http\Controllers'];
-        if(!empty(env('JWT_SECRET'))) $groupOptions['middleware'] = 'auth:api';
+        if(!empty(env('JWT_SECRET'))) $groupOptions['middleware'] = ['auth:api','throttle:global'];
         Route::group($groupOptions, function($router){
             require base_path().'/routes/crud/routes.php';
         });
@@ -128,6 +128,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider{
             'namespace' => 'App\Http\Controllers\Services',
             'prefix' => '/api/services/'
         ];
+        if(!empty(env('JWT_SECRET'))) $groupOptions['middleware'] = ['auth:api','throttle:global'];
         Route::group($groupOptions, function($router){
             require base_path().'/routes/services/routes.php';
         });
