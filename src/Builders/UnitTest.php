@@ -49,6 +49,7 @@ class UnitTest{
                 'string' => '            "'.$name.'" => \Illuminate\Support\Str::random('.($data['maxlength'] ?? 10).'),',
                 'timestamp' => '            "'.$name.'" => \Carbon\Carbon::now(),',
                 'datetime' => '            "'.$name.'" => \Carbon\Carbon::now(),',
+                'date' => '            "'.$name.'" => \Carbon\Carbon::now(),',
                 'float' => '            "'.$name.'" => rand(1,'.($data['maxlength'] ?? 10).'),',
                 default => '            "'.$name.'" => null,'
             };
