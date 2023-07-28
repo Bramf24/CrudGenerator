@@ -50,6 +50,7 @@ class ModelFactory{
                 'string' => '            "'.$name.'" => $this->faker->regexify(\'[A-Za-z]{'.($data['maxlength'] ?? 1).'}\'),',
                 'timestamp' => '            "'.$name.'" => $this->faker->dateTime(),',
                 'datetime' => '            "'.$name.'" => $this->faker->dateTime(),',
+                'date' => '            "'.$name.'" => $this->faker->dateTime(),',
                 'float' => '            "'.$name.'" => $this->faker->numberBetween(1,'.($data['maxlength'] ?? 10).'),',
                 default => '            "'.$name.'" => null,'
             };
