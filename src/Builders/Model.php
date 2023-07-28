@@ -28,7 +28,8 @@ class Model{
         'text' => 'string',
         'uuid' => 'string',
         'float' => 'numeric',
-        'datetime' => 'date_format:Y-m-d H:i:s'
+        'datetime' => 'date_format:Y-m-d H:i:s',
+        'date' => 'date_format:Y-m-d'
     ];
 
     public function __construct(
