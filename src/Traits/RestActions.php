@@ -9,7 +9,8 @@ use Illuminate\Support\Arr;
  * model must have public static $rules array to validate input data
  */
 trait RestActions{    
-    public function all(): mixed{
+    public function all(Request $request): mixed{
+        if($request->filled('limit')) return response()->json(self::MODEL::limit($request->limit)->get(),200);
         return response()->json(self::MODEL::all(),200);
     }
 
