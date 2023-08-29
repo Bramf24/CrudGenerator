@@ -30,7 +30,7 @@ class ParamModelTest extends TestCase
     public function test_get_all_ParamTableName(){
         Event::fake();
         $model = \App\Models\ParamModel::factory()->create();
-        $this->get('ParamUrl',['limit'=>10]);
+        $this->get('ParamUrl?limit=10');
         $this->seeStatusCode(200);
         $this->seeJsonStructure([
             [ParamResponseFields]
