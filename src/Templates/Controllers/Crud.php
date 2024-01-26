@@ -30,7 +30,7 @@ class ParamController extends Controller{
 
     /**
         * @OA\Get(
-        *   path="ParamUrl/{ParamModelLowerId}",
+        *   path="ParamUrl/{id}",
         *   tags={"ParamModelLower"},
         *   description="Find ParamModelSnake by id",
         *   operationId="ParamModelLowerget",
@@ -73,7 +73,7 @@ class ParamController extends Controller{
 
     /**
         * @OA\Put(
-        *   path="ParamUrl/ParamModelLowerId}",
+        *   path="ParamUrl/{id}",
         *   tags={"ParamModelLower"},
         *   description="Update ParamModelSnake with given Id",
         *   operationId="ParamModelLowerupdate",
@@ -94,7 +94,7 @@ class ParamController extends Controller{
 
     /**
         * @OA\Delete(
-        *   path="ParamUrl/{ParamModelLowerId}",
+        *   path="ParamUrl/{id}",
         *   tags={"ParamModelLower"},
         *   description="Delete ParamModelSnake with given Id",
         *   operationId="ParamModelLowerdelete",

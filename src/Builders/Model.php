@@ -10,7 +10,7 @@ class Model{
      * Table column's exception list
      */
     const MODEL_FIELD_EXCEPTIONS = [
-        'id','created_at','updated_at'
+        'created_at','updated_at'
     ];
 
     /**
